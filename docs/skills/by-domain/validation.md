@@ -6,4 +6,4 @@
 
 | Name | Title | Status | Link |
 |---|---|---|---|
-| media-validator | Universal Media Validation | active | [link](../skill/media_validator.md) |
+| media-validator | Universal Media Validation | active | [link](../skill/media-validator.md) |

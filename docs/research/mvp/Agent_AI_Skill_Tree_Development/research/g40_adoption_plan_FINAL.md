@@ -1,7 +1,7 @@
 # G40 — Workable-Items SQLite DB Adoption Plan (FINALIZED)
 
-**Revision:** 1
-**Last modified:** 2026-07-17T23:00:00Z
+**Revision:** 2
+**Last modified:** 2026-07-18T01:34:00Z
 **Status:** FINALIZED — design complete, implementation gated per §11.4.197
 **Authority:** Constitution §11.4.93 (SQLite SSoT) / §11.4.95 (DB tracked in
 git) / §11.4.74 (extend-don't-reimplement) / §11.4.28 (decoupling) /
@@ -63,6 +63,18 @@ before any migration work begins.
 **Estimated effort:** ~30 minutes (one-shot build + verify)
 
 **Sequencing:** Can run immediately — no dependency on in-flight work.
+
+**Phase 0 Completion Record (2026-07-18T01:34Z, T4/feature/catalog-docs):**
+- Binary built: `/tmp/workable-items` — `--help` exits 0 ✓
+- `go vet ./...` — clean (zero warnings) ✓
+- `go test ./...` — PASS (`ok  github.com/.../cmd/workable-items 0.595s`) ✓
+- Schema version: `4` (NOT `6` — the plan's v6 assumption is incorrect;
+  `schema.sql` line `('schema_version', '4')` is the live version.
+  This is a GAP finding: the plan referenced v6 from `schema_embed.sql`
+  but the actual schema file declares v4. Phase 1 import MUST target
+  the live v4 schema, not the planned v6.)
+- **Verdict: Phase 0 COMPLETED with one plan-vs-reality gap documented.**
+  Phases 1–5 are UNBLOCKED — proceed using live schema v4.
 
 ---
 

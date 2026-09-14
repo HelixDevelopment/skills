@@ -4,28 +4,29 @@
 > graph by the `skills-catalog` generator. Edit the skill via CLI/REST/MCP
 > (see `docs/scripts/` / `docs/API.md`) — this file will be overwritten.
 
-Total skills: 11
+Total skills: 30
 
 ## By Kind
 
-- atomic: 11 (see [by-kind/atomic.md](by-kind/atomic.md))
+- atomic: 30 (see [by-kind/atomic.md](by-kind/atomic.md))
 - composite: 0 (see [by-kind/composite.md](by-kind/composite.md))
 - umbrella: 0 (see [by-kind/umbrella.md](by-kind/umbrella.md))
 
 ## By Status
 
-- draft: 4
-- active: 7
+- draft: 20
+- active: 9
 - validated: 0
 - deprecated: 0
+- unclassified: 1
 
 ## By Domain
 
-- [agent-infrastructure](by-domain/agent-infrastructure.md): 6 skill(s)
-- [android](by-domain/android.md): 1 skill(s)
-- [language](by-domain/language.md): 2 skill(s)
-- [os](by-domain/os.md): 1 skill(s)
-- [validation](by-domain/validation.md): 1 skill(s)
+- [agent-infrastructure](by-domain/agent-infrastructure.md): 25 skill(s)
+- [android](by-domain/android.md): 2 skill(s)
+- [language](by-domain/language.md): 3 skill(s)
+- [os](by-domain/os.md): 2 skill(s)
+- [validation](by-domain/validation.md): 2 skill(s)
 
 ## Full Index
 

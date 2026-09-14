@@ -99,8 +99,8 @@ Multi-track configuration lives in the project's multitrack config file. Each tr
 ## Cross-links
 
 - **Requires:** `session_orchestrator` (flowing-pool claim registry)
-- **Optional:** [`session-sync`](session_sync.md) (cross-track state persistence via continuum)
-- **Related skills:** [`session-sync`](session_sync.md) (bridges session state between workstations/tracks)
+- **Optional:** [`session-sync`](session-sync.md) (cross-track state persistence via continuum)
+- **Related skills:** [`session-sync`](session-sync.md) (bridges session state between workstations/tracks)
 - **Parent domain:** [`agent-infrastructure`](../by-domain/agent-infrastructure.md)
 - **Constitution source:** [`constitution/skills/multitrack/`](../../../constitution/skills/multitrack/)
 
