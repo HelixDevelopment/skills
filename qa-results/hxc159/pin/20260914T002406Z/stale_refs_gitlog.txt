@@ -1,0 +1,16 @@
+=== git log main..origin/helix_skills ===
+(exit=0 — empty output above = 0 commits ahead)
+ancestor-of-main: YES
+
+=== git log main..origin/worktree-agent-a41ff2c21450bdf5c ===
+(exit=0 — empty output above = 0 commits ahead)
+ancestor-of-main: YES
+
+=== git log main..origin/worktree-agent-abb59d8974644d7a9 ===
+(exit=0 — empty output above = 0 commits ahead)
+ancestor-of-main: YES
+
+=== git log main..origin/worktree-agent-adb9e192e0bc9275c ===
+(exit=0 — empty output above = 0 commits ahead)
+ancestor-of-main: YES
+

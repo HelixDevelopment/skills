@@ -1,0 +1,16 @@
+# Branch table — T-P3.03.1 (20260914T002406Z)
+
+HEAD/main: 315b56ce1e4c2570610e0b214ea34d64fc469e1e
+
+REF                                           SHA                                      AHEAD_OF_MAIN
+origin/HEAD                                   315b56ce1e4c2570610e0b214ea34d64fc469e1e 0
+origin/main                                   315b56ce1e4c2570610e0b214ea34d64fc469e1e 0
+origin/feature/catalog-docs                   dd1edaa5edfcbf8c65be8ab5574e476327429dc8 1
+origin/feature/deep-research                  8c78272c58c2a40b40af22a88cb2940904d13722 1
+origin/feature/testing-infra                  6d7306dbd87bc847526139ad042a556489fd3d2e 6
+origin/helix_skills                           06d77bd806ac7ab32b11b7939cdc78537e520139 0
+origin/worktree-agent-a41ff2c21450bdf5c       25cb8ca0e9ffcd66ca6f0250b91e92fa6f029018 0
+origin/worktree-agent-abb59d8974644d7a9       25cb8ca0e9ffcd66ca6f0250b91e92fa6f029018 0
+origin/worktree-agent-adb9e192e0bc9275c       25cb8ca0e9ffcd66ca6f0250b91e92fa6f029018 0
+
+tags: 0
