@@ -45,6 +45,7 @@ type Config struct {
 	Cache        CacheConfig        `toml:"cache"`
 	Metrics      MetricsConfig      `toml:"metrics"`
 	Tenant       TenantConfig       `toml:"tenant"`
+	SourceSync   SourceSyncConfig   `toml:"source_sync"`
 }
 
 // ---------------------------------------------------------------------------
@@ -301,6 +302,27 @@ type MetricsConfig struct {
 	Path string `toml:"path"`
 }
 
+// SourceSyncConfig controls the skill source sync pipeline (G69/G72).
+type SourceSyncConfig struct {
+	// Enabled turns on the source sync worker. When false, no automatic
+	// sync cycles run, but manual syncs via MCP/REST are still available.
+	Enabled bool `toml:"enabled"`
+	// IntervalMinutes is how often the sync worker checks for sources
+	// that need re-syncing (default 60).
+	IntervalMinutes int `toml:"interval_minutes"`
+	// MaxConcurrentSyncs is the maximum number of sources that can be
+	// synced simultaneously (default 2).
+	MaxConcurrentSyncs int `toml:"max_concurrent_syncs"`
+	// LicenseAllowlist is the set of SPDX license identifiers that
+	// permit redistribution of upstream skill content. An empty upstream
+	// license is always treated as NOT allowed. An empty allowlist means
+	// ALL licenses are gated (no body redistributed).
+	LicenseAllowlist []string `toml:"license_allowlist"`
+	// GitHubTokenEnv is the environment variable name that holds the
+	// GitHub API token for source sync (default "HELIX_SOURCE_SYNC_GITHUB_TOKEN").
+	GitHubTokenEnv string `toml:"github_token_env"`
+}
+
 // ---------------------------------------------------------------------------
 // Defaults
 // ---------------------------------------------------------------------------
@@ -393,6 +415,13 @@ func defaultConfig() Config {
 				RequestsPerMinute: 60,
 				BurstSize:         10,
 			},
+		},
+		SourceSync: SourceSyncConfig{
+			Enabled:            false, // disabled by default — opt-in
+			IntervalMinutes:    60,
+			MaxConcurrentSyncs: 2,
+			LicenseAllowlist:   nil, // all licenses gated by default
+			GitHubTokenEnv:     "HELIX_SOURCE_SYNC_GITHUB_TOKEN",
 		},
 	}
 }
