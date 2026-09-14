@@ -25,15 +25,18 @@ func writeSkillDir(t *testing.T, root, name, body string) {
 }
 
 func TestCollisionFailsClosed(t *testing.T) {
+	// EVOLVED in T-P4.03: the registry is keyed by QUALIFIED identity, so
+	// same bare names from different sources now COEXIST
+	// (TestCrossSourceCoexistence). The fail-closed collision is a duplicate
+	// qualified identity: two directories in ONE source carrying one
+	// front-matter name. RED_MODE=1 asserts the silent world and FAILS on
+	// the fixed tree — proving the test discriminates.
 	t.Parallel()
-	rootA, rootB := t.TempDir(), t.TempDir()
-	writeSkillDir(t, rootA, "same", "---\nname: same\ndescription: Same from A.\n---\n\n# A\n")
-	writeSkillDir(t, rootB, "same", "---\nname: same\ndescription: Same from B.\n---\n\n# B\n")
+	root := t.TempDir()
+	writeSkillDir(t, root, "d1", "---\nname: same\ndescription: Same from d1.\n---\n\n# D1\n")
+	writeSkillDir(t, root, "d2", "---\nname: same\ndescription: Same from d2.\n---\n\n# D2\n")
 	reg := NewRegistry()
-	if err := reg.RegisterSource(Source{Name: "src-a", Root: rootA, Dialect: DialectAgent, Precedence: 10, Trust: TrustVendored}); err != nil {
-		t.Fatal(err)
-	}
-	if err := reg.RegisterSource(Source{Name: "src-b", Root: rootB, Dialect: DialectAgent, Precedence: 20, Trust: TrustVendored}); err != nil {
+	if err := reg.RegisterSource(Source{Name: "src", Root: root, Dialect: DialectAgent, Precedence: 10, Trust: TrustVendored}); err != nil {
 		t.Fatal(err)
 	}
 	got, err := reg.Load()
@@ -45,14 +48,17 @@ func TestCollisionFailsClosed(t *testing.T) {
 		return
 	}
 	if err == nil {
-		t.Fatalf("collision resolved silently with %d skills; want typed ErrDuplicateSkill", len(got))
+		t.Fatalf("duplicate qualified identity resolved silently with %d skills; want typed ErrDuplicateSkill", len(got))
 	}
 	var dup *DuplicateSkillError
 	if !errors.As(err, &dup) {
 		t.Fatalf("error type = %T; want *DuplicateSkillError", err)
 	}
-	if dup.Name != "same" || dup.FirstSource == "" || dup.SecondSource == "" || dup.FirstSource == dup.SecondSource {
+	if dup.Name != "same" || dup.FirstSource != "src" || dup.SecondSource != "src" {
 		t.Fatalf("error must name the skill and BOTH sides: %+v", dup)
+	}
+	if dup.FirstDir == dup.SecondDir || dup.FirstDir == "" || dup.SecondDir == "" {
+		t.Fatalf("error must name BOTH directories: %+v", dup)
 	}
 }
 

@@ -1,0 +1,14 @@
+=== RUN   TestQualifiedNameRule
+=== PAUSE TestQualifiedNameRule
+=== RUN   TestCrossSourceCoexistence
+=== PAUSE TestCrossSourceCoexistence
+=== RUN   TestAssertNameMatchesDir
+=== PAUSE TestAssertNameMatchesDir
+=== CONT  TestQualifiedNameRule
+--- PASS: TestQualifiedNameRule (0.00s)
+=== CONT  TestAssertNameMatchesDir
+--- PASS: TestAssertNameMatchesDir (0.00s)
+=== CONT  TestCrossSourceCoexistence
+--- PASS: TestCrossSourceCoexistence (0.00s)
+PASS
+ok  	github.com/HelixDevelopment/skills/pkg/skills	0.006s

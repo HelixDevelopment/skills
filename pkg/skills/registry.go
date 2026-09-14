@@ -6,12 +6,12 @@ import (
 )
 
 // DuplicateSkillError is the fail-closed collision verdict (T-P4.02.3,
-// R-04): the same bare skill name enumerated from two sources. It names
-// the skill and BOTH sides — never a bare boolean, never a silent resolve.
-//
-// NOTE (T-P4.03 direction): once namespaced identity <source>.<name> lands,
-// same-named skills from DIFFERENT sources coexist and this error fires
-// only on duplicate qualified identity (same source+name twice).
+// R-04, namespaced in T-P4.03): a duplicate QUALIFIED identity
+// <source>.<name> — the same source+name twice (e.g. two directories in
+// one source carrying one front-matter name). Same bare names from
+// DIFFERENT sources coexist (TestCrossSourceCoexistence) and never reach
+// this error. It names the skill and BOTH directories — never a bare
+// boolean, never a silent resolve.
 type DuplicateSkillError struct {
 	Name         string
 	FirstSource  string
@@ -21,8 +21,8 @@ type DuplicateSkillError struct {
 }
 
 func (e *DuplicateSkillError) Error() string {
-	return fmt.Sprintf("skills: duplicate skill %q: source %q (%s) collides with source %q (%s) — refusing to start (fail-closed, R-04)",
-		e.Name, e.FirstSource, e.FirstDir, e.SecondSource, e.SecondDir)
+	return fmt.Sprintf("skills: duplicate skill %q (qualified %s.%s): %s collides with %s — refusing to start (fail-closed, R-04)",
+		e.Name, e.FirstSource, e.Name, e.FirstDir, e.SecondDir)
 }
 
 // DuplicateSourceError fires when the same source name is registered twice.
@@ -33,6 +33,15 @@ type DuplicateSourceError struct {
 
 func (e *DuplicateSourceError) Error() string {
 	return fmt.Sprintf("skills: duplicate source %q: already registered — refusing second registration", e.Name)
+}
+
+// displayPath prefers the root-relative path (distinguishes same-basename
+// directories in deep trees) and falls back to the bare directory.
+func displayPath(s Skill) string {
+	if s.RelPath != "" {
+		return s.RelPath
+	}
+	return s.Dir
 }
 
 // RegistryStats carries the union-count equality proof (T-P4.02.4):
@@ -92,8 +101,9 @@ func (r *Registry) Sources() []Source {
 	return out
 }
 
-// Load enumerates every registered source into one namespace. On a bare
-// name collision it returns *DuplicateSkillError and NO partial union —
+// Load enumerates every registered source into one namespace keyed by
+// QUALIFIED identity <source>.<name> (T-P4.03). On a duplicate qualified
+// identity it returns *DuplicateSkillError and NO partial union —
 // refusing to start, never resolving silently. Deterministic output order
 // (source precedence, then skill name) per §11.4.50.
 func (r *Registry) Load() ([]Skill, error) {
@@ -108,17 +118,18 @@ func (r *Registry) Load() ([]Skill, error) {
 		}
 		r.counts[src.Name] = len(skills)
 		for _, s := range skills {
-			if owner, exists := r.byName[s.Name]; exists {
+			q := s.Qualified()
+			if owner, exists := r.byName[q]; exists {
 				return nil, &DuplicateSkillError{
 					Name:         s.Name,
-					FirstSource:  r.order[s.Name],
+					FirstSource:  r.order[q],
 					SecondSource: src.Name,
-					FirstDir:     owner.Dir,
-					SecondDir:    s.Dir,
+					FirstDir:     displayPath(owner),
+					SecondDir:    displayPath(s),
 				}
 			}
-			r.byName[s.Name] = s
-			r.order[s.Name] = src.Name
+			r.byName[q] = s
+			r.order[q] = src.Name
 		}
 	}
 	out := make([]Skill, 0, len(r.byName))

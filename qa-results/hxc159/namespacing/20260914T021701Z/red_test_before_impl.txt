@@ -1,0 +1,14 @@
+# github.com/HelixDevelopment/skills/pkg/skills [github.com/HelixDevelopment/skills/pkg/skills.test]
+pkg/skills/namespace_test.go:15:7: undefined: QualifiedName
+pkg/skills/namespace_test.go:19:15: undefined: ParseQualified
+pkg/skills/namespace_test.go:29:8: undefined: QualifiedName
+pkg/skills/namespace_test.go:30:17: undefined: ParseQualified
+pkg/skills/namespace_test.go:35:19: undefined: ParseQualified
+pkg/skills/namespace_test.go:41:8: sk.Qualified undefined (type Skill has no field or method Qualified)
+pkg/skills/namespace_test.go:42:39: sk.Qualified undefined (type Skill has no field or method Qualified)
+pkg/skills/namespace_test.go:74:9: s.Qualified undefined (type Skill has no field or method Qualified)
+pkg/skills/namespace_test.go:109:12: undefined: AssertNameMatchesDir
+pkg/skills/namespace_test.go:116:9: undefined: AssertNameMatchesDir
+pkg/skills/namespace_test.go:116:9: too many errors
+FAIL	github.com/HelixDevelopment/skills/pkg/skills [build failed]
+FAIL

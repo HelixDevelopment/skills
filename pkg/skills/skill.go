@@ -31,6 +31,12 @@ type Skill struct {
 	Source string `json:"source"`
 	Dir    string `json:"dir"`
 
+	// RelPath is the source-root-relative directory of the manifest
+	// (e.g. "skills/codex/skill-creator"). Two directories can share a
+	// base name in a deep tree; collision errors cite RelPath so both
+	// sides are distinguishable.
+	RelPath string `json:"rel_path,omitempty"`
+
 	// NameMismatch is true when Name != Dir. Consumer gates fail on it
 	// for conforming sources; legacy corpora carry it as a named gap.
 	NameMismatch bool `json:"name_mismatch,omitempty"`

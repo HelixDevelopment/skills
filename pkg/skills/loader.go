@@ -99,7 +99,15 @@ func (l *Loader) LoadOne(src Source, manifest string) (Skill, error) {
 	if err := src.Validate(); err != nil {
 		return Skill{}, err
 	}
-	return l.loadDir(src, filepath.Dir(manifest), filepath.Base(filepath.Dir(manifest)))
+	dir := filepath.Dir(manifest)
+	skill, err := l.loadDir(src, dir, filepath.Base(dir))
+	if err != nil {
+		return Skill{}, err
+	}
+	if rel, relErr := filepath.Rel(src.Root, dir); relErr == nil {
+		skill.RelPath = rel
+	}
+	return skill, nil
 }
 
 func (l *Loader) loadDir(src Source, dir, base string) (Skill, error) {

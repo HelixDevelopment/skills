@@ -1,0 +1,1 @@
+CM-SKILL-SOURCE-REGISTRY: PASS — fail-closed collision typed, union-count equal, polarity discriminates

@@ -1,0 +1,13 @@
+--- FAIL: TestLoaderEnumeratesFixtureCorpus (0.00s)
+    loader_test.go:56: RED_MODE=1 expects the defect (0 skills); got 2 — defect absent, fix present
+--- FAIL: TestDuplicateSourceNameRefused (0.00s)
+    registry_test.go:106: RED_MODE=1 expects silent re-registration; got skills: duplicate source "dup": already registered — refusing second registration
+--- FAIL: TestCollisionFailsClosed (0.00s)
+    registry_test.go:46: RED_MODE=1 expects silent resolve (nil error, 1 skill); got err=skills: duplicate skill "same": source "src" (d1) collides with source "src" (d2) — refusing to start (fail-closed, R-04) n=0 — defect absent
+--- FAIL: TestSameSourceDuplicateStillRefused (0.00s)
+    namespace_test.go:97: RED_MODE=1 expects silent resolve within one source (pre-fix)
+--- FAIL: TestCrossSourceCoexistence (0.00s)
+    namespace_test.go:62: RED_MODE=1 expects the bare-name collision refusal (pre-namespacing defect)
+FAIL
+FAIL	github.com/HelixDevelopment/skills/pkg/skills	0.007s
+FAIL
