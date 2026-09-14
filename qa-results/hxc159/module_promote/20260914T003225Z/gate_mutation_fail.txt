@@ -1,1 +1,1 @@
-CM-HXC159-SOURCE-CONSUMABLE: PASS — root go.mod module=github.com/HelixDevelopment/skills, build green, packages=29
+CM-HXC159-SOURCE-CONSUMABLE: FAIL — rev 668607b has no root go.mod (module not promoted)

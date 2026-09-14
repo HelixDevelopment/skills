@@ -1,0 +1,1 @@
+CM-SUBMODULE-PIN-ON-MAIN: FAIL — branch='helix_skills', want 'main' (never a bare branch name)

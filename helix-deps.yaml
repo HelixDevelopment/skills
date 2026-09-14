@@ -1,6 +1,9 @@
 # =============================================================================
-# HelixKnowledge Skill Graph Service - Dependency Manifest
+# Helix Skills - Dependency Manifest (repo root, CONST-054)
 # =============================================================================
+# Lifted to root under HXC-159 T-P3.02 from
+# docs/research/mvp/Agent_AI_Skill_Tree_Development/project/helix-deps.yaml
+# with all 7 declared dependencies preserved byte-identical.
 # Per Constitution:
 #   - §11.4.28C  Dependencies resolve to ONE canonical location:
 #                <repo_root>/<name>/ (ungrouped) or

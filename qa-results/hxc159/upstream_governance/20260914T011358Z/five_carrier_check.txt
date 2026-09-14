@@ -1,0 +1,14 @@
+== CLAUDE.md: PRESENT
+## INHERITED FROM constitution/CLAUDE.md
+== AGENTS.md: PRESENT
+== QWEN.md: PRESENT
+## INHERITED FROM constitution/QWEN.md
+== GEMINI.md: PRESENT
+## INHERITED FROM constitution/GEMINI.md
+== CONSTITUTION.md: PRESENT
+## INHERITED FROM constitution/Constitution.md (HelixConstitution submodule)
+
+NOTE: AGENTS.md carries its inheritance pointer as a blockquote ("Base agent
+rules live at constitution/AGENTS.md ... READ THOSE FIRST") rather than an
+"INHERITED FROM" heading — equivalent binding, verified above.
+Verdict T-P3.02.3: five-carrier set COMPLETE (5/5 present, 5/5 inheriting).
