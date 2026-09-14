@@ -1,0 +1,36 @@
+=== RUN   TestZZProbeRealCorpus
+  MISMATCH name="Action Prefix System" dir=action-prefix-system/SKILL.md
+  BAD media-validator/SKILL.md: skills: source "constitution": /home/milosvasic/Projects/helix_code/constitution/skills/media-validator/SKILL.md: skills: SKILL.md has no YAML front-matter block
+  MISMATCH name="Multitrack" dir=multitrack/SKILL.md
+  MISMATCH name="Reporting Workable Items" dir=reporting-workable-items/SKILL.md
+  BAD scheduled-work-queue/SKILL.md: skills: source "constitution": /home/milosvasic/Projects/helix_code/constitution/skills/scheduled-work-queue/SKILL.md: skills: SKILL.md has no YAML front-matter block
+  BAD session-sync/SKILL.md: skills: source "constitution": /home/milosvasic/Projects/helix_code/constitution/skills/session-sync/SKILL.md: skills: SKILL.md has no YAML front-matter block
+  MISMATCH name="Workable Item Lifecycle" dir=workable-item-lifecycle/SKILL.md
+PROBE source=constitution files=8 ok=5 mismatch=4 bad=3 elapsed=1ms
+  MISMATCH name="amazon aurora dsql" dir=MCP/submodules/aws-mcp/src/aurora-dsql-mcp-server/skills/amazon-aurora-dsql-skill/SKILL.md
+  MISMATCH name="aurora dsql" dir=MCP/submodules/aws-mcp/src/aurora-dsql-mcp-server/skills/aurora-dsql-skill/SKILL.md
+  MISMATCH name="aws dsql" dir=MCP/submodules/aws-mcp/src/aurora-dsql-mcp-server/skills/aws-dsql-skill/SKILL.md
+  MISMATCH name="distributed postgres" dir=MCP/submodules/aws-mcp/src/aurora-dsql-mcp-server/skills/distributed-postgres-skill/SKILL.md
+  MISMATCH name="distributed sql" dir=MCP/submodules/aws-mcp/src/aurora-dsql-mcp-server/skills/distributed-sql-skill/SKILL.md
+  MISMATCH name="dsql" dir=MCP/submodules/aws-mcp/src/aurora-dsql-mcp-server/skills/dsql-skill/SKILL.md
+  MISMATCH name="{ setup-skill-name }" dir=MCP/submodules/trello-mcp/_bmad/bmp/bmad-bmp-setup/SKILL.md
+  MISMATCH name="mcp-server-trello" dir=MCP/submodules/trello-mcp/skill/SKILL.md
+  MISMATCH name="documentation" dir=docs/skills/development/SKILL.md
+  BAD external/cognee/examples/demos/skill_feedback_loop/skills/diff-risk-explainer/SKILL.md: skills: source "helixagent": /home/milosvasic/Projects/helix_code/submodules/helix_agent/external/cognee/examples/demos/skill_feedback_loop/skills/diff-risk-explainer/SKILL.md: front-matter carries no name
+  BAD external/cognee/examples/demos/skill_feedback_loop/skills/pr-comment-evaluator/SKILL.md: skills: source "helixagent": /home/milosvasic/Projects/helix_code/submodules/helix_agent/external/cognee/examples/demos/skill_feedback_loop/skills/pr-comment-evaluator/SKILL.md: front-matter carries no name
+  BAD external/cognee/examples/demos/skill_feedback_loop/skills/skill-feedback-writer/SKILL.md: skills: source "helixagent": /home/milosvasic/Projects/helix_code/submodules/helix_agent/external/cognee/examples/demos/skill_feedback_loop/skills/skill-feedback-writer/SKILL.md: front-matter carries no name
+  MISMATCH name="Agent Development" dir=skills/claude-code/agent-development/SKILL.md
+  MISMATCH name="Command Development" dir=skills/claude-code/command-development/SKILL.md
+  MISMATCH name="Hook Development" dir=skills/claude-code/hook-development/SKILL.md
+  MISMATCH name="MCP Integration" dir=skills/claude-code/mcp-integration/SKILL.md
+  MISMATCH name="Plugin Settings" dir=skills/claude-code/plugin-settings/SKILL.md
+  MISMATCH name="Plugin Structure" dir=skills/claude-code/plugin-structure/SKILL.md
+  MISMATCH name="Skill Development" dir=skills/claude-code/skill-development/SKILL.md
+  MISMATCH name="Writing Hookify Rules" dir=skills/claude-code/writing-rules/SKILL.md
+  MISMATCH name="gptme-plugin-development" dir=skills/gptme/plugin-development/SKILL.md
+  MISMATCH name="code-review" dir=skills/openhands/codereview/SKILL.md
+  MISMATCH name="skill-adapter" dir=skills/plugins/examples/pi-pathfinder/SKILL.md
+PROBE source=helixagent files=1315 ok=1312 mismatch=20 bad=3 elapsed=402ms
+--- PASS: TestZZProbeRealCorpus (0.40s)
+PASS
+ok  	github.com/HelixDevelopment/skills/pkg/skills	0.409s

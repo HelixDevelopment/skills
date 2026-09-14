@@ -1,0 +1,1 @@
+CM-SKILL-SOURCE-REGISTRY: FAIL — registry tests do not pass at RED_MODE=0

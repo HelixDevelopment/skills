@@ -16,10 +16,24 @@ type Skill struct {
 	License     string `json:"license,omitempty"`
 	Body        string `json:"body"`
 
-	// Source is the owning source name; Dir is the skill directory
-	// (Name == Dir, enforced at load).
+	// Source is the owning source name; Dir is the skill directory.
+	// Name USUALLY equals Dir (D-1 authoring convention for new portable
+	// skills) but legacy corpora systematically differ ("Action Prefix
+	// System" in dir "action-prefix-system"; "amazon aurora dsql" in
+	// "amazon-aurora-dsql-skill" — measured 2026-09-14 on both production
+	// corpora, and NEITHER production loader enforces the equality:
+	// helix_agent/internal/skills/loader.go:44-99 registers by
+	// front-matter name with no directory comparison). Rejecting the
+	// mismatch at load would refuse both corpora the loader exists to
+	// serve — a CONST-035 usability defect. So the mismatch is RECORDED
+	// here and reported by AssertNameMatchesDir (T-P4.03.3), never a
+	// load-time refusal.
 	Source string `json:"source"`
 	Dir    string `json:"dir"`
+
+	// NameMismatch is true when Name != Dir. Consumer gates fail on it
+	// for conforming sources; legacy corpora carry it as a named gap.
+	NameMismatch bool `json:"name_mismatch,omitempty"`
 
 	// Trust is the owning source's tier, carried per skill so consumers
 	// can enforce tier policy without re-resolving the source.

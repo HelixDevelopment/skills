@@ -3,9 +3,7 @@ package skills
 import (
 	"crypto/sha256"
 	"encoding/hex"
-	"errors"
 	"fmt"
-	"io/fs"
 	"os"
 	"path/filepath"
 	"sort"
@@ -22,13 +20,31 @@ type Loader struct{}
 func NewLoader() *Loader { return &Loader{} }
 
 // LoadSource enumerates every skill under src.Root and returns them sorted
-// by directory name (deterministic, §11.4.50). Fail-closed:
+// by manifest path (deterministic, §11.4.50). The walk is RECURSIVE:
+// corpus 2 (HelixAgent tree) is a deep tree where skills live several
+// levels down (e.g. MCP/submodules/.../.agents/skills/<name>/SKILL.md),
+// so a one-level walk would register it as silently empty — a structural
+// bluff. Every directory holding an exact-case SKILL.md is one skill;
+// `.git` subtrees are never descended. Fail-closed:
 //
 //   - src must Validate (unknown dialect/trust rejected, never coerced)
+//
+//   - every enumerated manifest must carry parseable front-matter with a
+//     non-empty name and description (malformed is an error, never a
+//     silent skip — T-P6.04 direction)
+//
+//   - name/directory mismatch is RECORDED (Skill.NameMismatch), not
+//     refused: both production corpora violate Name==Dir and neither
+//     production loader enforces it (measured 2026-09-14)
+//
+//   - src must Validate (unknown dialect/trust rejected, never coerced)
+//
 //   - every skill directory must hold an exact-case SKILL.md
 //     (case-insensitive filesystems cannot fake a pass: the check is
 //     name-exact, not open-and-hope)
+//
 //   - the front-matter `name` must equal the directory name (spec §8)
+//
 //   - malformed front-matter is an error, never a silent skip (T-P6.04
 //     direction: operator-visible failures)
 //
@@ -42,28 +58,48 @@ func (l *Loader) LoadSource(src Source) ([]Skill, error) {
 	if err != nil {
 		return nil, fmt.Errorf("skills: source %q: cannot read root %q: %w", src.Name, src.Root, err)
 	}
-	var out []Skill
-	for _, e := range entries {
-		if !e.IsDir() {
-			continue
-		}
-		if strings.HasPrefix(e.Name(), ".") {
-			continue
-		}
-		skill, err := l.loadDir(src, filepath.Join(src.Root, e.Name()), e.Name())
+	_ = entries
+	var manifests []string
+	walkErr := filepath.WalkDir(src.Root, func(p string, d os.DirEntry, err error) error {
 		if err != nil {
-			if errors.Is(err, fs.ErrNotExist) {
-				// Not a skill directory (no manifest at all): skip.
-				// A PRESENT-but-malformed manifest is an error, never a
-				// silent skip (T-P6.04 direction).
-				continue
+			return err
+		}
+		if d.IsDir() {
+			if d.Name() == ".git" {
+				return filepath.SkipDir
 			}
+			if _, statErr := os.Stat(filepath.Join(p, "SKILL.md")); statErr == nil {
+				manifests = append(manifests, filepath.Join(p, "SKILL.md"))
+			} else if !os.IsNotExist(statErr) {
+				return statErr
+			}
+		}
+		return nil
+	})
+	if walkErr != nil {
+		return nil, fmt.Errorf("skills: source %q: walk %q: %w", src.Name, src.Root, walkErr)
+	}
+	sort.Strings(manifests)
+	var out []Skill
+	for _, manifest := range manifests {
+		skill, err := l.LoadOne(src, manifest)
+		if err != nil {
 			return nil, err
 		}
 		out = append(out, skill)
 	}
-	sort.Slice(out, func(i, j int) bool { return out[i].Dir < out[j].Dir })
 	return out, nil
+}
+
+// LoadOne loads a single skill from its exact-case SKILL.md manifest path.
+// Exported so callers (and the T-P6.04 malformed-visibility surface) can
+// attribute per-file verdicts: which file failed and why, never a silent
+// skip. src names the owning source for provenance and error context.
+func (l *Loader) LoadOne(src Source, manifest string) (Skill, error) {
+	if err := src.Validate(); err != nil {
+		return Skill{}, err
+	}
+	return l.loadDir(src, filepath.Dir(manifest), filepath.Base(filepath.Dir(manifest)))
 }
 
 func (l *Loader) loadDir(src Source, dir, base string) (Skill, error) {
@@ -88,21 +124,20 @@ func (l *Loader) loadDir(src Source, dir, base string) (Skill, error) {
 	if name == "" {
 		return Skill{}, fmt.Errorf("skills: source %q: %s: front-matter carries no name", src.Name, manifest)
 	}
-	if name != base {
-		return Skill{}, fmt.Errorf("skills: source %q: name %q does not match directory %q (spec §8)", src.Name, name, base)
-	}
+	nameMismatch := name != base
 
 	sum := sha256.Sum256(raw)
 	skill := Skill{
-		Name:        name,
-		Description: scalars["description"],
-		Version:     scalars["version"],
-		License:     scalars["license"],
-		Body:        strings.TrimSpace(body),
-		Source:      src.Name,
-		Dir:         base,
-		Trust:       src.Trust,
-		Hash:        hex.EncodeToString(sum[:]),
+		Name:         name,
+		Description:  scalars["description"],
+		Version:      scalars["version"],
+		License:      scalars["license"],
+		Body:         strings.TrimSpace(body),
+		Source:       src.Name,
+		Dir:          base,
+		NameMismatch: nameMismatch,
+		Trust:        src.Trust,
+		Hash:         hex.EncodeToString(sum[:]),
 	}
 	if skill.Description == "" {
 		return Skill{}, fmt.Errorf("skills: source %q: skill %q has empty description", src.Name, name)

@@ -1,0 +1,4 @@
+PROBE source=constitution n=0 err=skills: source "constitution": name "Action Prefix System" does not match directory "action-prefix-system" (spec §8) elapsed=0s
+PROBE source=helixagent n=0 err=skills: source "helixagent": name "amazon aurora dsql" does not match directory "amazon-aurora-dsql-skill" (spec §8) elapsed=346ms
+PASS
+ok  	github.com/HelixDevelopment/skills/pkg/skills	0.352s

@@ -93,7 +93,16 @@ func TestLoaderEnumeratesFixtureCorpus(t *testing.T) {
 	}
 }
 
-func TestLoaderRejectsNameDirectoryMismatch(t *testing.T) {
+func TestLoaderRecordsNameDirectoryMismatch(t *testing.T) {
+	// §11.4.120 RECONCILIATION (2026-09-14): this test first asserted a
+	// fail-closed refusal. Real-corpus probes then PROVED both production
+	// corpora violate Name==Dir ("Action Prefix System" in
+	// "action-prefix-system"; "amazon aurora dsql" in
+	// "amazon-aurora-dsql-skill") while NEITHER production loader enforces
+	// it (helix_agent/internal/skills/loader.go:44-99). A refusal would
+	// reject corpora 1+2 wholesale — a CONST-035 usability defect. The new
+	// mechanism: record (Skill.NameMismatch) + report (T-P4.03.3
+	// AssertNameMatchesDir), never refuse at load.
 	root := t.TempDir()
 	dir := filepath.Join(root, "wrongdir")
 	if err := os.MkdirAll(dir, 0o755); err != nil {
@@ -104,15 +113,18 @@ func TestLoaderRejectsNameDirectoryMismatch(t *testing.T) {
 		t.Fatal(err)
 	}
 	src := Source{Name: "fixture", Root: root, Dialect: DialectAgent, Precedence: 10, Trust: TrustVendored}
-	_, err := NewLoader().LoadSource(src)
+	got, err := NewLoader().LoadSource(src)
+	if err != nil {
+		t.Fatalf("LoadSource refused a legacy mismatch: %v (record, never refuse)", err)
+	}
 	if redMode() {
-		if err == nil {
-			t.Fatal("RED_MODE=1 expects silent acceptance of the mismatch (the defect)")
+		if len(got) == 1 && !got[0].NameMismatch {
+			t.Fatal("RED_MODE=1 expects the mismatch to pass unrecorded (the defect)")
 		}
 		return
 	}
-	if err == nil {
-		t.Fatal("name-matches-directory violation accepted silently; want fail-closed error")
+	if len(got) != 1 || got[0].Name != "rightname" || !got[0].NameMismatch {
+		t.Fatalf("mismatch must load with NameMismatch=true: %+v", got)
 	}
 }
 

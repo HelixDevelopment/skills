@@ -1,0 +1,12 @@
+# github.com/HelixDevelopment/skills/pkg/skills [github.com/HelixDevelopment/skills/pkg/skills.test]
+pkg/skills/registry_test.go:32:9: undefined: NewRegistry
+pkg/skills/registry_test.go:50:11: undefined: DuplicateSkillError
+pkg/skills/registry_test.go:65:9: undefined: NewRegistry
+pkg/skills/registry_test.go:92:9: undefined: NewRegistry
+pkg/skills/registry_test.go:104:11: undefined: DuplicateSourceError
+pkg/skills/registry_test.go:119:15: undefined: LoadManifest
+pkg/skills/registry_test.go:129:9: undefined: NewRegistry
+pkg/skills/registry_test.go:149:15: undefined: LoadManifest
+pkg/skills/registry_test.go:194:9: undefined: NewRegistry
+FAIL	github.com/HelixDevelopment/skills/pkg/skills [build failed]
+FAIL

@@ -1,0 +1,5 @@
+PROBE source=constitution n=0 err=skills: source "constitution": name "Action Prefix System" does not match directory "action-prefix-system" (spec §8) elapsed=0s
+PROBE source=helixagent n=0 err=<nil> elapsed=1ms
+--- PASS: TestZZProbeRealCorpus (0.00s)
+PASS
+ok  	github.com/HelixDevelopment/skills/pkg/skills	0.006s

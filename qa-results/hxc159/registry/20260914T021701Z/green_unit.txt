@@ -1,0 +1,35 @@
+=== RUN   TestLoaderEnumeratesFixtureCorpus
+--- PASS: TestLoaderEnumeratesFixtureCorpus (0.00s)
+=== RUN   TestLoaderRejectsNameDirectoryMismatch
+--- PASS: TestLoaderRejectsNameDirectoryMismatch (0.00s)
+=== RUN   TestLoaderRequiresExactCaseManifest
+--- PASS: TestLoaderRequiresExactCaseManifest (0.00s)
+=== RUN   TestCollisionFailsClosed
+=== PAUSE TestCollisionFailsClosed
+=== RUN   TestUnionCountEquality
+=== PAUSE TestUnionCountEquality
+=== RUN   TestDuplicateSourceNameRefused
+=== PAUSE TestDuplicateSourceNameRefused
+=== RUN   TestManifestLoad
+=== PAUSE TestManifestLoad
+=== RUN   TestManifestRejectsUnknownDialect
+=== PAUSE TestManifestRejectsUnknownDialect
+=== RUN   TestLoadWritesNothingProvesInPlace
+=== PAUSE TestLoadWritesNothingProvesInPlace
+=== CONT  TestCollisionFailsClosed
+=== CONT  TestManifestLoad
+=== CONT  TestLoadWritesNothingProvesInPlace
+=== CONT  TestManifestRejectsUnknownDialect
+=== CONT  TestDuplicateSourceNameRefused
+=== CONT  TestUnionCountEquality
+--- PASS: TestDuplicateSourceNameRefused (0.00s)
+--- PASS: TestCollisionFailsClosed (0.00s)
+--- PASS: TestManifestLoad (0.00s)
+--- PASS: TestManifestRejectsUnknownDialect (0.00s)
+=== NAME  TestUnionCountEquality
+    registry_test.go:80: source src-a: 2
+    registry_test.go:80: source src-b: 1
+--- PASS: TestUnionCountEquality (0.00s)
+--- PASS: TestLoadWritesNothingProvesInPlace (0.00s)
+PASS
+ok  	github.com/HelixDevelopment/skills/pkg/skills	0.008s

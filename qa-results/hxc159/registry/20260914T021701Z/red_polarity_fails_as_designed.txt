@@ -1,0 +1,7 @@
+--- FAIL: TestDuplicateSourceNameRefused (0.00s)
+    registry_test.go:100: RED_MODE=1 expects silent re-registration; got skills: duplicate source "dup": already registered — refusing second registration
+--- FAIL: TestCollisionFailsClosed (0.00s)
+    registry_test.go:43: RED_MODE=1 expects silent resolve (nil error, 1 skill); got err=skills: duplicate skill "same": source "src-a" (same) collides with source "src-b" (same) — refusing to start (fail-closed, R-04) n=0 — defect absent
+FAIL
+FAIL	github.com/HelixDevelopment/skills/pkg/skills	0.005s
+FAIL
