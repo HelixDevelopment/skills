@@ -3,6 +3,7 @@ package skills
 import (
 	"fmt"
 	"sort"
+	"sync"
 )
 
 // DuplicateSkillError is the fail-closed collision verdict (T-P4.02.3,
@@ -52,9 +53,13 @@ type RegistryStats struct {
 }
 
 // Registry is the single authoritative enumeration over all registered
-// sources (spec §8). Fail-closed on collision. Not safe for concurrent
-// use — concurrent registrar/loader contention is T-P4.07.1 territory.
+// sources (spec §8). Fail-closed on collision. Contention-safe (T-P4.07.1):
+// RegisterSource/Load take the write lock; Sources/Stats/Activate take the
+// read lock. Locking is FLAT — no method acquires the mutex twice and no
+// method calls another locking method while holding it (deadlock-free by
+// construction; verified under -race by TestConcurrentRegistrarAndReads).
 type Registry struct {
+	mu      sync.RWMutex
 	sources []Source
 	byName  map[string]Skill
 	order   map[string]string // bare name -> owning source (for the error)
@@ -78,6 +83,8 @@ func (r *Registry) RegisterSource(src Source) error {
 	if err := src.Validate(); err != nil {
 		return err
 	}
+	r.mu.Lock()
+	defer r.mu.Unlock()
 	for _, s := range r.sources {
 		if s.Name == src.Name {
 			return &DuplicateSourceError{Name: src.Name}
@@ -91,6 +98,13 @@ func (r *Registry) RegisterSource(src Source) error {
 // Sources returns the registered sources in deterministic
 // (precedence, name) order.
 func (r *Registry) Sources() []Source {
+	r.mu.RLock()
+	defer r.mu.RUnlock()
+	return r.orderedSourcesLocked()
+}
+
+// orderedSourcesLocked sorts a copy; caller must hold (at least) the read lock.
+func (r *Registry) orderedSourcesLocked() []Source {
 	out := append([]Source(nil), r.sources...)
 	sort.Slice(out, func(i, j int) bool {
 		if out[i].Precedence != out[j].Precedence {
@@ -107,11 +121,13 @@ func (r *Registry) Sources() []Source {
 // refusing to start, never resolving silently. Deterministic output order
 // (source precedence, then skill name) per §11.4.50.
 func (r *Registry) Load() ([]Skill, error) {
+	r.mu.Lock()
+	defer r.mu.Unlock()
 	loader := NewLoader()
 	r.byName = map[string]Skill{}
 	r.order = map[string]string{}
 	r.counts = map[string]int{}
-	for _, src := range r.Sources() {
+	for _, src := range r.orderedSourcesLocked() {
 		skills, err := loader.LoadSource(src)
 		if err != nil {
 			return nil, err
@@ -150,6 +166,8 @@ func (r *Registry) Load() ([]Skill, error) {
 // a successful Load; the standing integration test asserts
 // Total == sum(PerSource) == len(Load()).
 func (r *Registry) Stats() RegistryStats {
+	r.mu.RLock()
+	defer r.mu.RUnlock()
 	per := map[string]int{}
 	sum := 0
 	for k, v := range r.counts {

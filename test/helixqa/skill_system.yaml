@@ -1415,3 +1415,61 @@ test_cases:
     required_evidence:
       - test_exit_zero
       - no_panics
+
+  # ------------------------------------------------------------------
+  # HXC-159 T-P4.07 — pkg/skills loader bank entries
+  # ------------------------------------------------------------------
+  - id: CME-SKILLS-LOADER-001
+    name: "Allowlist activation: empty default, ceiling refuse-and-name"
+    feature_class: skills_activation
+    related_issue: HXC-159
+    dispatches_to: "go test ./pkg/skills/ -run 'TestActivationDefaultEmpty|TestActivationCeilingRefusesAndNamesOffender' -v"
+    category: integration
+    priority: high
+    required_evidence:
+      - test_exit_zero
+      - captured_output_contains "PASS"
+
+  - id: CME-SKILLS-LOADER-002
+    name: "Capability refusal at the call boundary with audit trail"
+    feature_class: skills_security
+    related_issue: HXC-159
+    dispatches_to: "go test ./pkg/skills/ -run 'TestUndeclaredCapabilityRefusedAtCallBoundary|TestRefusalIsAudited' -v"
+    category: security
+    priority: high
+    required_evidence:
+      - test_exit_zero
+      - captured_output_contains "PASS"
+
+  - id: CME-SKILLS-LOADER-003
+    name: "Concurrent registrar/loader contention under race detector"
+    feature_class: skills_concurrency
+    related_issue: HXC-159
+    dispatches_to: "go test -race ./pkg/skills/ -run TestConcurrentRegistrarAndReads -v"
+    category: concurrency
+    priority: high
+    required_evidence:
+      - test_exit_zero
+      - no_data_race
+
+  - id: CME-SKILLS-LOADER-004
+    name: "Chaos battery: deleted root, disk-full, SIGKILL mid-write"
+    feature_class: skills_chaos
+    related_issue: HXC-159
+    dispatches_to: "go test ./pkg/skills/ -run 'TestChaosSourceRootDeleted|TestChaosRootDeletedMidEnumeration|TestChaosDiskFullDuringSave|TestChaosSigkillMidWrite' -v"
+    category: chaos
+    priority: high
+    required_evidence:
+      - test_exit_zero
+      - captured_output_contains "PASS"
+
+  - id: CME-SKILLS-LOADER-005
+    name: "Cold-enumeration NFR budget over corpus-2-scale tree"
+    feature_class: skills_performance
+    related_issue: HXC-159
+    dispatches_to: "go test ./pkg/skills/ -run TestColdEnumerationBudget -v"
+    category: benchmarking
+    priority: medium
+    required_evidence:
+      - test_exit_zero
+      - captured_output_contains "PASS"

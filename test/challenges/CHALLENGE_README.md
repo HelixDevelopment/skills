@@ -45,3 +45,9 @@ Each challenge produces captured evidence under `qa-results/`:
 - For fuzz: `no_panics` — the fuzz target never panics or crashes
 
 Last verified: 2026-07-18
+
+| CME-SKILLS-LOADER-001 | Allowlist activation under adversarial allowlists | pkg/skills | chaos |
+| CME-SKILLS-LOADER-002 | Capability refusal bypass attempts (undeclared shell/network) | pkg/skills | security |
+| CME-SKILLS-LOADER-003 | Registrar/loader contention storm under -race | pkg/skills | stress |
+| CME-SKILLS-LOADER-004 | Source-root deletion + disk-full + SIGKILL audit-atomicity | pkg/skills | chaos |
+| CME-SKILLS-LOADER-005 | Sustained MCP tool-call-shaped read storm (16x100) | pkg/skills | ddos |

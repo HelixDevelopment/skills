@@ -67,6 +67,8 @@ func (r *Registry) Activate(allow []string, ceiling int) ([]Skill, error) {
 	if ceiling <= 0 {
 		ceiling = DefaultCeiling
 	}
+	r.mu.RLock()
+	defer r.mu.RUnlock()
 	if !r.loaded {
 		if len(allow) == 0 {
 			return nil, nil
