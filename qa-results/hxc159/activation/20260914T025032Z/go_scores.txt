@@ -1,0 +1,14 @@
+reporting-workable-items || workable-item-lifecycle = 0.0806
+find-hypertable-candidates || migrate-postgres-tables-to-hypertables = 0.2353
+design-postgres-tables || setup-timescaledb-hypertables = 0.0256
+migrate-postgres-tables-to-hypertables || setup-timescaledb-hypertables = 0.0588
+media-validator || design-postgres-tables = 0.0000
+action-prefix-system || setup-timescaledb-hypertables = 0.0000
+skill-catalog || migrate-postgres-tables-to-hypertables = 0.0000
+session-sync || find-hypertable-candidates = 0.0000
+multitrack || media-validator = 0.0000
+scheduled-work-queue || design-postgres-tables = 0.0000
+action-prefix-system || skill-catalog = 0.0179
+session-sync || skill-catalog = 0.0278
+multitrack || session-sync = 0.0196
+scheduled-work-queue || session-sync = 0.0294
