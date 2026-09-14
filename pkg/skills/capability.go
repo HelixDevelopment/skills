@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+	"sort"
 	"strings"
 	"sync"
 	"time"
@@ -95,16 +96,33 @@ func (s Skill) Allows(c string) bool {
 	return false
 }
 
-// mappedBack covers the reverse spelling: a skill declaring the canonical
-// class satisfies a request for the raw tool name mapping to it.
-func mappedBack(declared string) string {
-	dn := strings.ToLower(strings.TrimSpace(declared))
-	for tool, class := range allowedToolsMap {
-		if dn == class {
-			return tool
+// reverseAllowedToolsMap inverts allowedToolsMap deterministically: each
+// class maps to its alphabetically-first tool. Built once at init so
+// mappedBack never ranges over a Go map (map iteration order is randomized
+// and made Allows() nondeterministic on the reverse-spelling path —
+// measured 31/169 allow/refuse split, HXC-159 P4 review finding).
+var reverseAllowedToolsMap = func() map[string]string {
+	rev := make(map[string]string, len(allowedToolsMap))
+	keys := make([]string, 0, len(allowedToolsMap))
+	for tool := range allowedToolsMap {
+		keys = append(keys, tool)
+	}
+	sort.Strings(keys)
+	for _, tool := range keys {
+		class := allowedToolsMap[tool]
+		if _, seen := rev[class]; !seen {
+			rev[class] = tool
 		}
 	}
-	return ""
+	return rev
+}()
+
+// mappedBack covers the reverse spelling: a skill declaring the canonical
+// class satisfies a request for the raw tool name mapping to it.
+// Deterministic: reads the precomputed reverse map (never ranges live).
+func mappedBack(declared string) string {
+	dn := strings.ToLower(strings.TrimSpace(declared))
+	return reverseAllowedToolsMap[dn]
 }
 
 // CapabilityRefusedError is the RS-14 verdict: a fixture skill requesting
