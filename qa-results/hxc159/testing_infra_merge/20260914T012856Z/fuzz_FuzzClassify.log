@@ -1,0 +1,10 @@
+fuzz: elapsed: 0s, gathering baseline coverage: 0/7 completed
+fuzz: elapsed: 0s, gathering baseline coverage: 7/7 completed, now fuzzing with 16 workers
+fuzz: elapsed: 3s, execs: 179666 (59869/sec), new interesting: 67 (total: 74)
+fuzz: elapsed: 6s, execs: 392823 (71075/sec), new interesting: 71 (total: 78)
+fuzz: elapsed: 9s, execs: 709460 (105484/sec), new interesting: 74 (total: 81)
+fuzz: elapsed: 12s, execs: 1054649 (115111/sec), new interesting: 82 (total: 89)
+fuzz: elapsed: 15s, execs: 1322063 (89149/sec), new interesting: 84 (total: 91)
+fuzz: elapsed: 16s, execs: 1322063 (0/sec), new interesting: 84 (total: 91)
+PASS
+ok  	github.com/HelixDevelopment/skills/internal/source/dedup	16.065s

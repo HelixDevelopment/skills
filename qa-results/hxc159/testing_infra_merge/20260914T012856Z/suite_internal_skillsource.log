@@ -1,0 +1,151 @@
+=== RUN   TestAuditEventConstants_NonEmpty
+--- PASS: TestAuditEventConstants_NonEmpty (0.00s)
+=== RUN   TestAuditEventConstants_Unique
+--- PASS: TestAuditEventConstants_Unique (0.00s)
+=== RUN   TestAuditEventConstants_PrefixConvention
+--- PASS: TestAuditEventConstants_PrefixConvention (0.00s)
+=== RUN   TestSourceType_IsValid
+--- PASS: TestSourceType_IsValid (0.00s)
+=== RUN   TestSyncStatus_IsValid
+--- PASS: TestSyncStatus_IsValid (0.00s)
+=== RUN   TestSkillSource_Validate
+=== RUN   TestSkillSource_Validate/valid_source_passes
+=== RUN   TestSkillSource_Validate/empty_name_fails
+=== RUN   TestSkillSource_Validate/invalid_source_type_fails
+=== RUN   TestSkillSource_Validate/nil_config_defaults_to_empty_object
+=== RUN   TestSkillSource_Validate/invalid_sync_status_fails
+=== RUN   TestSkillSource_Validate/empty_sync_status_passes_(defaults_on_create)
+--- PASS: TestSkillSource_Validate (0.00s)
+    --- PASS: TestSkillSource_Validate/valid_source_passes (0.00s)
+    --- PASS: TestSkillSource_Validate/empty_name_fails (0.00s)
+    --- PASS: TestSkillSource_Validate/invalid_source_type_fails (0.00s)
+    --- PASS: TestSkillSource_Validate/nil_config_defaults_to_empty_object (0.00s)
+    --- PASS: TestSkillSource_Validate/invalid_sync_status_fails (0.00s)
+    --- PASS: TestSkillSource_Validate/empty_sync_status_passes_(defaults_on_create) (0.00s)
+=== RUN   TestStore_Create
+    store_test.go:133: SKILL_SYSTEM_TEST_DB_HOST not set: this case requires a live pgvector/pgvector:pg16-class PostgreSQL instance.
+--- SKIP: TestStore_Create (0.00s)
+=== RUN   TestStore_GetByID
+    store_test.go:191: SKILL_SYSTEM_TEST_DB_HOST not set: this case requires a live pgvector/pgvector:pg16-class PostgreSQL instance.
+--- SKIP: TestStore_GetByID (0.00s)
+=== RUN   TestStore_GetByName
+    store_test.go:227: SKILL_SYSTEM_TEST_DB_HOST not set: this case requires a live pgvector/pgvector:pg16-class PostgreSQL instance.
+--- SKIP: TestStore_GetByName (0.00s)
+=== RUN   TestStore_List
+    store_test.go:261: SKILL_SYSTEM_TEST_DB_HOST not set: this case requires a live pgvector/pgvector:pg16-class PostgreSQL instance.
+--- SKIP: TestStore_List (0.00s)
+=== RUN   TestStore_Update
+    store_test.go:300: SKILL_SYSTEM_TEST_DB_HOST not set: this case requires a live pgvector/pgvector:pg16-class PostgreSQL instance.
+--- SKIP: TestStore_Update (0.00s)
+=== RUN   TestStore_Delete
+    store_test.go:341: SKILL_SYSTEM_TEST_DB_HOST not set: this case requires a live pgvector/pgvector:pg16-class PostgreSQL instance.
+--- SKIP: TestStore_Delete (0.00s)
+=== RUN   TestStore_UpdateSyncStatus
+    store_test.go:375: SKILL_SYSTEM_TEST_DB_HOST not set: this case requires a live pgvector/pgvector:pg16-class PostgreSQL instance.
+--- SKIP: TestStore_UpdateSyncStatus (0.00s)
+=== RUN   TestStress_ConcurrentValidate
+--- PASS: TestStress_ConcurrentValidate (0.00s)
+=== RUN   TestStress_ConcurrentValidateMultipleTypes
+--- PASS: TestStress_ConcurrentValidateMultipleTypes (0.00s)
+=== RUN   TestChaos_Validate_EmptyName
+--- PASS: TestChaos_Validate_EmptyName (0.00s)
+=== RUN   TestChaos_Validate_InvalidSourceType
+--- PASS: TestChaos_Validate_InvalidSourceType (0.00s)
+=== RUN   TestChaos_Validate_InvalidSyncStatus
+--- PASS: TestChaos_Validate_InvalidSyncStatus (0.00s)
+=== RUN   TestChaos_Validate_NilConfig_DefaultsToEmpty
+--- PASS: TestChaos_Validate_NilConfig_DefaultsToEmpty (0.00s)
+=== RUN   TestChaos_SourceType_IsValid
+--- PASS: TestChaos_SourceType_IsValid (0.00s)
+=== RUN   TestChaos_SyncStatus_IsValid
+--- PASS: TestChaos_SyncStatus_IsValid (0.00s)
+=== RUN   TestChaos_GitHubConfig_MarshalRoundTrip
+--- PASS: TestChaos_GitHubConfig_MarshalRoundTrip (0.00s)
+=== RUN   TestChaos_FilesystemConfig_MarshalRoundTrip
+--- PASS: TestChaos_FilesystemConfig_MarshalRoundTrip (0.00s)
+=== RUN   TestChaos_URLConfig_MarshalRoundTrip
+--- PASS: TestChaos_URLConfig_MarshalRoundTrip (0.00s)
+=== RUN   TestValidSourceTypes_ContainsAllTypes
+--- PASS: TestValidSourceTypes_ContainsAllTypes (0.00s)
+=== RUN   TestValidSyncStatuses_ContainsAllStatuses
+--- PASS: TestValidSyncStatuses_ContainsAllStatuses (0.00s)
+=== RUN   TestOrchestrator_SyncSource_SourceNotFound
+--- PASS: TestOrchestrator_SyncSource_SourceNotFound (0.00s)
+=== RUN   TestOrchestrator_SyncSource_DisabledSource
+--- PASS: TestOrchestrator_SyncSource_DisabledSource (0.00s)
+=== RUN   TestOrchestrator_SyncSource_GetByIDError
+--- PASS: TestOrchestrator_SyncSource_GetByIDError (0.00s)
+=== RUN   TestOrchestrator_SyncSource_UpdateSyncStatusError
+--- PASS: TestOrchestrator_SyncSource_UpdateSyncStatusError (0.00s)
+=== RUN   TestOrchestrator_SyncSource_UnsupportedSourceType
+--- PASS: TestOrchestrator_SyncSource_UnsupportedSourceType (0.00s)
+=== RUN   TestOrchestrator_SyncSource_URLSourceTypeNotImplemented
+--- PASS: TestOrchestrator_SyncSource_URLSourceTypeNotImplemented (0.00s)
+=== RUN   TestOrchestrator_parseContent
+=== RUN   TestOrchestrator_parseContent/valid_SKILL.md_parses_successfully
+=== RUN   TestOrchestrator_parseContent/invalid_content_produces_error_but_continues
+=== RUN   TestOrchestrator_parseContent/missing_name_produces_error
+=== RUN   TestOrchestrator_parseContent/empty_items_returns_empty
+--- PASS: TestOrchestrator_parseContent (0.00s)
+    --- PASS: TestOrchestrator_parseContent/valid_SKILL.md_parses_successfully (0.00s)
+    --- PASS: TestOrchestrator_parseContent/invalid_content_produces_error_but_continues (0.00s)
+    --- PASS: TestOrchestrator_parseContent/missing_name_produces_error (0.00s)
+    --- PASS: TestOrchestrator_parseContent/empty_items_returns_empty (0.00s)
+=== RUN   TestOrchestrator_mapSkills
+=== RUN   TestOrchestrator_mapSkills/valid_parsed_skill_maps_successfully
+=== RUN   TestOrchestrator_mapSkills/disallowed_license_produces_license-gated_stub
+=== RUN   TestOrchestrator_mapSkills/nil_parsed_list_returns_empty
+--- PASS: TestOrchestrator_mapSkills (0.00s)
+    --- PASS: TestOrchestrator_mapSkills/valid_parsed_skill_maps_successfully (0.00s)
+    --- PASS: TestOrchestrator_mapSkills/disallowed_license_produces_license-gated_stub (0.00s)
+    --- PASS: TestOrchestrator_mapSkills/nil_parsed_list_returns_empty (0.00s)
+=== RUN   TestOrchestrator_dedupSkills
+=== RUN   TestOrchestrator_dedupSkills/new_skills_are_included_for_import
+=== RUN   TestOrchestrator_dedupSkills/existing_skills_are_included_(upsert_path)
+--- PASS: TestOrchestrator_dedupSkills (0.00s)
+    --- PASS: TestOrchestrator_dedupSkills/new_skills_are_included_for_import (0.00s)
+    --- PASS: TestOrchestrator_dedupSkills/existing_skills_are_included_(upsert_path) (0.00s)
+=== RUN   TestOrchestrator_importSkills
+=== RUN   TestOrchestrator_importSkills/successful_imports
+=== RUN   TestOrchestrator_importSkills/create_error_is_non-fatal
+=== RUN   TestOrchestrator_importSkills/empty_list_returns_zero
+--- PASS: TestOrchestrator_importSkills (0.00s)
+    --- PASS: TestOrchestrator_importSkills/successful_imports (0.00s)
+    --- PASS: TestOrchestrator_importSkills/create_error_is_non-fatal (0.00s)
+    --- PASS: TestOrchestrator_importSkills/empty_list_returns_zero (0.00s)
+=== RUN   TestIsSKILLMD
+--- PASS: TestIsSKILLMD (0.00s)
+=== RUN   TestBuildSourcePermalink
+=== RUN   TestBuildSourcePermalink/github_source_with_path
+=== RUN   TestBuildSourcePermalink/github_source_without_path
+=== RUN   TestBuildSourcePermalink/github_source_defaults_ref_to_main
+=== RUN   TestBuildSourcePermalink/non-github_source_returns_empty
+--- PASS: TestBuildSourcePermalink (0.00s)
+    --- PASS: TestBuildSourcePermalink/github_source_with_path (0.00s)
+    --- PASS: TestBuildSourcePermalink/github_source_without_path (0.00s)
+    --- PASS: TestBuildSourcePermalink/github_source_defaults_ref_to_main (0.00s)
+    --- PASS: TestBuildSourcePermalink/non-github_source_returns_empty (0.00s)
+=== RUN   TestUnmarshalConfig
+=== RUN   TestUnmarshalConfig/valid_JSON
+=== RUN   TestUnmarshalConfig/empty_bytes_returns_nil
+=== RUN   TestUnmarshalConfig/invalid_JSON_returns_error
+--- PASS: TestUnmarshalConfig (0.00s)
+    --- PASS: TestUnmarshalConfig/valid_JSON (0.00s)
+    --- PASS: TestUnmarshalConfig/empty_bytes_returns_nil (0.00s)
+    --- PASS: TestUnmarshalConfig/invalid_JSON_returns_error (0.00s)
+=== RUN   TestNewOrchestrator_NilLogger
+--- PASS: TestNewOrchestrator_NilLogger (0.00s)
+=== RUN   TestWithLicenseAllowlist
+--- PASS: TestWithLicenseAllowlist (0.00s)
+=== RUN   FuzzValidate
+=== RUN   FuzzValidate/seed#0
+=== RUN   FuzzValidate/seed#1
+=== RUN   FuzzValidate/seed#2
+=== RUN   FuzzValidate/seed#3
+--- PASS: FuzzValidate (0.00s)
+    --- PASS: FuzzValidate/seed#0 (0.00s)
+    --- PASS: FuzzValidate/seed#1 (0.00s)
+    --- PASS: FuzzValidate/seed#2 (0.00s)
+    --- PASS: FuzzValidate/seed#3 (0.00s)
+PASS
+ok  	github.com/HelixDevelopment/skills/internal/skillsource	0.008s

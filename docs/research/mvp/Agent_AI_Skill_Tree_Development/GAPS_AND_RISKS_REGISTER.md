@@ -34,24 +34,14 @@
 | **N/A** | 1 | G136 (meta-assessment task itself) |
 | **TOTAL** | **136** | (G01–G135 + G137; G136 is the assessment task, deliberately unrated) |
 
-> **Register-cleanup note (2026-07-17 Rev 8):** Field-verification pass against
-> every per-item STATUS line. Corrections from Rev 7:
-> - G43 was wrongly in FIXED row; moved to OPEN HIGH (per-item status: FILED, PENDING).
-> - G19 (Fixed→SPEC.md), G20 (COMPLETED), G28 (Implemented) were in OPEN MEDIUM
->   but have Fixed per-item statuses; moved to FIXED.
-> - G137 was in OPEN HIGH but has Fixed per-item status; moved to FIXED.
-> - FIXED count corrected from 75→39 (Rev 7 count was inflated; only 39 items
->   have Fixed/Implemented/Completed/CLOSED per-item STATUS lines).
-> - OPEN HIGH corrected from 28→64 (G43 added; G137 removed; range counts
->   24+30 = 54 from G69–G122 are correct).
-> - OPEN MEDIUM corrected from 26→25 (G19, G20, G28 removed; G28 was missed
->   in Rev 7's count adjustment).
-> - G58 remains a placeholder (Type: TBD, Status: UNCONFIRMED) — no real finding
->   filed; conductor must investigate and create the actual finding.
-> The Fixed row captures all items whose per-item STATUS line reads Fixed,
-> Implemented, Completed, or CLOSED.
-> Open-item severity rows contain only OPEN items.
-> **Open-total verification:** 3+63+25+4 = 95 open + 40 fixed + 1 N/A = 136 total. ✓
+> **Open-total verification:** 2+62+25+4 = 93 open + 42 fixed + 1 N/A = 136 total. ✓
+>
+> **Rev 10 reconciliation (2026-07-17):** Replaced three contradictory Rev 8/9
+> summary tables with one authoritative table, verified against every per-item
+> STATUS line. Changes from Rev 9's first table: G12 moved OPEN HIGH → FIXED
+> (per-item: COMPLETED); G03 confirmed FIXED (per-item: FULLY LANDED).
+> G58 remains a placeholder (Type: TBD, Status: UNCONFIRMED) — no real finding
+> filed.
 
 > Severities for G52–G137 are **proposed** per G136 — see
 > `research/g136_severity_assessment.md` for the per-item evidence and

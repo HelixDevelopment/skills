@@ -1,0 +1,10 @@
+fuzz: elapsed: 0s, gathering baseline coverage: 0/4 completed
+fuzz: elapsed: 0s, gathering baseline coverage: 4/4 completed, now fuzzing with 16 workers
+fuzz: elapsed: 3s, execs: 38682 (12893/sec), new interesting: 71 (total: 75)
+fuzz: elapsed: 6s, execs: 139154 (33486/sec), new interesting: 104 (total: 108)
+fuzz: elapsed: 9s, execs: 202073 (20975/sec), new interesting: 110 (total: 114)
+fuzz: elapsed: 12s, execs: 269375 (22432/sec), new interesting: 116 (total: 120)
+fuzz: elapsed: 15s, execs: 292416 (7678/sec), new interesting: 123 (total: 127)
+fuzz: elapsed: 16s, execs: 292416 (0/sec), new interesting: 123 (total: 127)
+PASS
+ok  	github.com/HelixDevelopment/skills/internal/skillsource	16.080s

@@ -1,0 +1,111 @@
+=== RUN   TestNewMCPClient
+--- PASS: TestNewMCPClient (0.00s)
+=== RUN   TestMCPClient_ConnectHTTP_Success
+--- PASS: TestMCPClient_ConnectHTTP_Success (0.00s)
+=== RUN   TestMCPClient_ConnectHTTP_Unavailable
+--- PASS: TestMCPClient_ConnectHTTP_Unavailable (0.00s)
+=== RUN   TestMCPClient_ConnectHTTP_EmptyEndpoint
+--- PASS: TestMCPClient_ConnectHTTP_EmptyEndpoint (0.00s)
+=== RUN   TestMCPClient_Connect_BadTransport
+--- PASS: TestMCPClient_Connect_BadTransport (0.00s)
+=== RUN   TestMCPClient_QuerySymbols_Available
+--- PASS: TestMCPClient_QuerySymbols_Available (0.00s)
+=== RUN   TestMCPClient_QuerySymbols_Unavailable
+--- PASS: TestMCPClient_QuerySymbols_Unavailable (0.00s)
+=== RUN   TestMCPClient_GetDependencies
+--- PASS: TestMCPClient_GetDependencies (0.00s)
+=== RUN   TestMCPClient_IndexProject
+--- PASS: TestMCPClient_IndexProject (0.00s)
+=== RUN   TestMCPClient_IndexProject_Unavailable
+--- PASS: TestMCPClient_IndexProject_Unavailable (0.00s)
+=== RUN   TestMCPClient_WatchChanges_Unavailable
+--- PASS: TestMCPClient_WatchChanges_Unavailable (0.00s)
+=== RUN   TestPatternExtractor_ExtractPatterns_Unavailable
+--- PASS: TestPatternExtractor_ExtractPatterns_Unavailable (0.00s)
+=== RUN   TestClampConfidence
+--- PASS: TestClampConfidence (0.00s)
+=== RUN   TestFindSymbolFiles
+--- PASS: TestFindSymbolFiles (0.00s)
+=== RUN   TestNormalizePackageName
+--- PASS: TestNormalizePackageName (0.00s)
+=== RUN   TestContains
+--- PASS: TestContains (0.00s)
+=== RUN   TestIsAPIRelated
+--- PASS: TestIsAPIRelated (0.00s)
+=== RUN   TestMapToSkill_Found
+--- PASS: TestMapToSkill_Found (0.00s)
+=== RUN   TestMapToSkill_NotFound
+--- PASS: TestMapToSkill_NotFound (0.00s)
+=== RUN   TestMapToSkill_NilSearcher
+--- PASS: TestMapToSkill_NilSearcher (0.00s)
+=== RUN   TestFilterAndCap
+--- PASS: TestFilterAndCap (0.00s)
+=== RUN   TestDefaultPatternExtractorConfig
+--- PASS: TestDefaultPatternExtractorConfig (0.00s)
+=== RUN   TestPatternCategory_Constants
+--- PASS: TestPatternCategory_Constants (0.00s)
+=== RUN   TestStress_ConcurrentSymbolsToEvidence
+--- PASS: TestStress_ConcurrentSymbolsToEvidence (0.00s)
+=== RUN   TestStress_ConcurrentDeduplicateEvidence
+--- PASS: TestStress_ConcurrentDeduplicateEvidence (0.00s)
+=== RUN   TestStress_ConcurrentEvidenceCacheLifecycle
+--- PASS: TestStress_ConcurrentEvidenceCacheLifecycle (0.00s)
+=== RUN   TestStress_ConcurrentClientBuild
+--- PASS: TestStress_ConcurrentClientBuild (0.00s)
+=== RUN   TestChaos_IndexManager_IndexProject_UnavailableReturnsEmpty
+--- PASS: TestChaos_IndexManager_IndexProject_UnavailableReturnsEmpty (0.00s)
+=== RUN   TestChaos_IndexManager_QuerySymbols_UnavailableReturnsEmpty
+    stress_chaos_fuzz_test.go:174: nil symbols on unavailable server is acceptable
+--- PASS: TestChaos_IndexManager_QuerySymbols_UnavailableReturnsEmpty (0.00s)
+=== RUN   TestChaos_MCPClient_NilConfig
+--- PASS: TestChaos_MCPClient_NilConfig (0.00s)
+=== RUN   TestChaos_SymbolToEvidence_FillsFields
+--- PASS: TestChaos_SymbolToEvidence_FillsFields (0.00s)
+=== RUN   TestChaos_DeduplicateEvidence_EmptySlice
+--- PASS: TestChaos_DeduplicateEvidence_EmptySlice (0.00s)
+=== RUN   TestChaos_ClearEvidenceCache_ResetsSize
+--- PASS: TestChaos_ClearEvidenceCache_ResetsSize (0.00s)
+=== RUN   TestChaos_IndexManager_GetDependencies_UnavailableReturnsEmpty
+--- PASS: TestChaos_IndexManager_GetDependencies_UnavailableReturnsEmpty (0.00s)
+=== RUN   TestChaos_SyncManager_StartStop_Lifecycle
+--- PASS: TestChaos_SyncManager_StartStop_Lifecycle (0.00s)
+=== RUN   TestChaos_SyncManager_RegisterUnregister
+--- PASS: TestChaos_SyncManager_RegisterUnregister (0.00s)
+=== RUN   TestChaos_PatternExtractor_ZeroConfig_DoesNotPanic
+--- PASS: TestChaos_PatternExtractor_ZeroConfig_DoesNotPanic (0.00s)
+=== RUN   TestChaos_PatternExtractor_ExtractPatterns_UnconfiguredClient
+--- PASS: TestChaos_PatternExtractor_ExtractPatterns_UnconfiguredClient (0.00s)
+=== RUN   TestStress_ConcurrentGetDependencies
+--- PASS: TestStress_ConcurrentGetDependencies (0.00s)
+=== RUN   FuzzEvidenceCache
+=== RUN   FuzzEvidenceCache/seed#0
+=== RUN   FuzzEvidenceCache/seed#1
+=== RUN   FuzzEvidenceCache/seed#2
+=== RUN   FuzzEvidenceCache/seed#3
+--- PASS: FuzzEvidenceCache (0.00s)
+    --- PASS: FuzzEvidenceCache/seed#0 (0.00s)
+    --- PASS: FuzzEvidenceCache/seed#1 (0.00s)
+    --- PASS: FuzzEvidenceCache/seed#2 (0.00s)
+    --- PASS: FuzzEvidenceCache/seed#3 (0.00s)
+=== RUN   FuzzIndexProjectPath
+=== RUN   FuzzIndexProjectPath/seed#0
+=== RUN   FuzzIndexProjectPath/seed#1
+=== RUN   FuzzIndexProjectPath/seed#2
+=== RUN   FuzzIndexProjectPath/seed#3
+=== RUN   FuzzIndexProjectPath/seed#4
+--- PASS: FuzzIndexProjectPath (0.00s)
+    --- PASS: FuzzIndexProjectPath/seed#0 (0.00s)
+    --- PASS: FuzzIndexProjectPath/seed#1 (0.00s)
+    --- PASS: FuzzIndexProjectPath/seed#2 (0.00s)
+    --- PASS: FuzzIndexProjectPath/seed#3 (0.00s)
+    --- PASS: FuzzIndexProjectPath/seed#4 (0.00s)
+=== RUN   FuzzSymbolToEvidence
+=== RUN   FuzzSymbolToEvidence/seed#0
+=== RUN   FuzzSymbolToEvidence/seed#1
+=== RUN   FuzzSymbolToEvidence/seed#2
+--- PASS: FuzzSymbolToEvidence (0.00s)
+    --- PASS: FuzzSymbolToEvidence/seed#0 (0.00s)
+    --- PASS: FuzzSymbolToEvidence/seed#1 (0.00s)
+    --- PASS: FuzzSymbolToEvidence/seed#2 (0.00s)
+PASS
+ok  	github.com/HelixDevelopment/skills/internal/codegraph	0.020s

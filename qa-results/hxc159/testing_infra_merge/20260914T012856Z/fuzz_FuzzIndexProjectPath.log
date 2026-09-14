@@ -1,0 +1,10 @@
+fuzz: elapsed: 0s, gathering baseline coverage: 0/5 completed
+fuzz: elapsed: 0s, gathering baseline coverage: 5/5 completed, now fuzzing with 16 workers
+fuzz: elapsed: 3s, execs: 200136 (66711/sec), new interesting: 1 (total: 6)
+fuzz: elapsed: 6s, execs: 423321 (74247/sec), new interesting: 1 (total: 6)
+fuzz: elapsed: 9s, execs: 644597 (73665/sec), new interesting: 1 (total: 6)
+fuzz: elapsed: 12s, execs: 865312 (73802/sec), new interesting: 1 (total: 6)
+fuzz: elapsed: 15s, execs: 1085392 (73340/sec), new interesting: 1 (total: 6)
+fuzz: elapsed: 15s, execs: 1085392 (0/sec), new interesting: 1 (total: 6)
+PASS
+ok  	github.com/HelixDevelopment/skills/internal/codegraph	15.151s

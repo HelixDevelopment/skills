@@ -1,0 +1,7 @@
+run-id: 20260914T012856Z
+date: 2026-09-14T01:35:03Z
+go: go version go1.26.0 linux/amd64
+main-pre-merge: 22e1cacc3e215e856d3d94a48cd115f3a01c82e8
+feature: 6d7306dbd87bc847526139ad042a556489fd3d2e
+merge-base: dcbe5045ebbe278c078fd4247d6ab1f02b45f107
+postgres-5544: reachable

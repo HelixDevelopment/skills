@@ -1,0 +1,7 @@
+FuzzEvidenceCache (internal/codegraph) exit=0
+FuzzIndexProjectPath (internal/codegraph) exit=0
+FuzzSymbolToEvidence (internal/codegraph) exit=0
+FuzzSkillKindNormalize (internal/models) exit=0
+FuzzSkillJSON (internal/models) exit=1
+FuzzValidate (internal/skillsource) exit=0
+FuzzClassify (internal/source/dedup) exit=0

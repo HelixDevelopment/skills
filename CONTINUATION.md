@@ -9,20 +9,17 @@
 
 Documentation sync + catalog maintenance. The MVP skill-graph system
 (`docs/research/mvp/Agent_AI_Skill_Tree_Development/`) is in active
-development with 95 open findings (2 CRITICAL, 64 HIGH, 25 MEDIUM,
+development with 93 open findings (2 CRITICAL, 62 HIGH, 25 MEDIUM,
 4 LOW) across 136 tracked items in the GAPS_AND_RISKS_REGISTER.md.
 
 ---
 
 ## §2 — Session State
 
-- **HEAD:** `be54af4` + merge `b4fa061` (T3 restart — full test suite GREEN, merged origin/main tenant wiring)
-- **Branch:** `feature/testing-infra` (merged origin/main, fast-forward)
+- **HEAD:** `ec38b63` (merge commit — origin/main `dcbe504` merged into `f07d599`)
+- **Branch:** `feature/testing-infra` (merged origin/main, clean merge, fast-forward)
 - **Constitution submodule:** present at `constitution/`
-- **Skills installed:** 7 active (action-prefix-system, media-validator,
-  multitrack, reporting-workable-items, scheduled-work-queue, session-sync,
-  workable-item-lifecycle) + 4 draft (android.overview, java.language,
-  kotlin.language, linux.os)
+- **Skills installed:** 7 active + 4 draft
 
 ---
 
@@ -48,6 +45,7 @@ development with 95 open findings (2 CRITICAL, 64 HIGH, 25 MEDIUM,
 - CONSTITUTION: session_orchestrator claim.go fix (defer trimEventsLocked before unlock)
 - CONSTITUTION: perf indexes pushed to all 6 upstreams
 - PUSH: all changes pushed to all 4 upstreams (gitflic, github, gitlab, gitverse)
+- T3-RESTART (from feature/testing-infra, merged HXC-159 T-P3.04): full suite 24/24 Go packages PASS; G12 tree-sitter COMPLETE (37 PASS); G20 autoexpand COMPLETE (18 PASS + 3 live-DB SKIP); stress+chaos+fuzz +57 tests (codegraph 16, dedup 12, skillsource 15, models 14); HelixQA bank 91→119 (+28); challenge inventory at test/challenges/CHALLENGE_README.md
 
 ### Previously completed
 - T3-RESTART-2: merged origin/main (b4fa061 tenant wiring) into feature/testing-infra

@@ -1089,3 +1089,329 @@ test_cases:
     required_evidence:
       - test_exit_zero
       - captured_output_contains "PASS"
+
+  # ------------------------------------------------------------------
+  # CodeGraph — stress + chaos (NEW G04 expansion)
+  # ------------------------------------------------------------------
+  - id: CME-CODEGRAPH-001
+    name: "Concurrent SymbolsToEvidence dedup (100 goroutines)"
+    feature_class: codegraph
+    related_issue: G04
+    dispatches_to: "go test ./internal/codegraph/ -run TestStress_ConcurrentSymbolsToEvidence -v"
+    category: stress
+    priority: high
+    required_evidence:
+      - test_exit_zero
+      - captured_output_contains "PASS"
+
+  - id: CME-CODEGRAPH-002
+    name: "Concurrent DeduplicateEvidence (100 goroutines)"
+    feature_class: codegraph
+    related_issue: G04
+    dispatches_to: "go test ./internal/codegraph/ -run TestStress_ConcurrentDeduplicateEvidence -v"
+    category: stress
+    priority: high
+    required_evidence:
+      - test_exit_zero
+      - captured_output_contains "PASS"
+
+  - id: CME-CODEGRAPH-003
+    name: "Concurrent evidence cache lifecycle"
+    feature_class: codegraph
+    related_issue: G04
+    dispatches_to: "go test ./internal/codegraph/ -run TestStress_ConcurrentEvidenceCacheLifecycle -v"
+    category: stress
+    priority: high
+    required_evidence:
+      - test_exit_zero
+      - captured_output_contains "PASS"
+
+  - id: CME-CODEGRAPH-004
+    name: "Concurrent client build (100 goroutines)"
+    feature_class: codegraph
+    related_issue: G04
+    dispatches_to: "go test ./internal/codegraph/ -run TestStress_ConcurrentClientBuild -v"
+    category: stress
+    priority: high
+    required_evidence:
+      - test_exit_zero
+      - captured_output_contains "PASS"
+
+  - id: CME-CODEGRAPH-005
+    name: "IndexProject graceful degradation on unavailable server"
+    feature_class: codegraph
+    related_issue: G04
+    dispatches_to: "go test ./internal/codegraph/ -run TestChaos_IndexManager_IndexProject_UnavailableReturnsEmpty -v"
+    category: chaos
+    priority: high
+    required_evidence:
+      - test_exit_zero
+      - captured_output_contains "PASS"
+
+  - id: CME-CODEGRAPH-006
+    name: "QuerySymbols graceful degradation on unavailable server"
+    feature_class: codegraph
+    related_issue: G04
+    dispatches_to: "go test ./internal/codegraph/ -run TestChaos_IndexManager_QuerySymbols_UnavailableReturnsEmpty -v"
+    category: chaos
+    priority: high
+    required_evidence:
+      - test_exit_zero
+      - captured_output_contains "PASS"
+
+  - id: CME-CODEGRAPH-007
+    name: "ClearEvidenceCache resets dedup index"
+    feature_class: codegraph
+    related_issue: G04
+    dispatches_to: "go test ./internal/codegraph/ -run TestChaos_ClearEvidenceCache_ResetsSize -v"
+    category: chaos
+    priority: high
+    required_evidence:
+      - test_exit_zero
+      - captured_output_contains "PASS"
+
+  - id: CME-CODEGRAPH-008
+    name: "Concurrent GetDependencies (100 goroutines)"
+    feature_class: codegraph
+    related_issue: G04
+    dispatches_to: "go test ./internal/codegraph/ -run TestStress_ConcurrentGetDependencies -v"
+    category: stress
+    priority: high
+    required_evidence:
+      - test_exit_zero
+      - captured_output_contains "PASS"
+
+  # ------------------------------------------------------------------
+  # Dedup — stress + chaos (NEW G04 expansion)
+  # ------------------------------------------------------------------
+  - id: CME-DEDUP-001
+    name: "Concurrent classify (100 goroutines, same skill)"
+    feature_class: dedup
+    related_issue: G04
+    dispatches_to: "go test ./internal/source/dedup/ -run TestStress_ConcurrentClassify -v"
+    category: stress
+    priority: high
+    required_evidence:
+      - test_exit_zero
+      - captured_output_contains "PASS"
+
+  - id: CME-DEDUP-002
+    name: "Concurrent classify mixed skills (300 goroutines)"
+    feature_class: dedup
+    related_issue: G04
+    dispatches_to: "go test ./internal/source/dedup/ -run TestStress_ConcurrentClassifyMixed -v"
+    category: stress
+    priority: high
+    required_evidence:
+      - test_exit_zero
+      - captured_output_contains "PASS"
+
+  - id: CME-DEDUP-003
+    name: "Classify nil skill returns new classification"
+    feature_class: dedup
+    related_issue: G04
+    dispatches_to: "go test ./internal/source/dedup/ -run TestChaos_ClassifyNilSkill -v"
+    category: chaos
+    priority: medium
+    required_evidence:
+      - test_exit_zero
+      - captured_output_contains "PASS"
+
+  - id: CME-DEDUP-004
+    name: "Classifier handles nil entries in existing skills"
+    feature_class: dedup
+    related_issue: G04
+    dispatches_to: "go test ./internal/source/dedup/ -run TestChaos_NewClassifier_HandlesNils -v"
+    category: chaos
+    priority: medium
+    required_evidence:
+      - test_exit_zero
+      - captured_output_contains "PASS"
+
+  - id: CME-DEDUP-005
+    name: "Name normalization edge cases"
+    feature_class: dedup
+    related_issue: G04
+    dispatches_to: "go test ./internal/source/dedup/ -run TestNormalizeName_EdgeCases -v"
+    category: chaos
+    priority: medium
+    required_evidence:
+      - test_exit_zero
+      - captured_output_contains "PASS"
+
+  # ------------------------------------------------------------------
+  # SkillSource — stress + chaos (NEW G04 expansion)
+  # ------------------------------------------------------------------
+  - id: CME-SKILLSOURCE-001
+    name: "Concurrent source validation (100 goroutines)"
+    feature_class: skillsource
+    related_issue: G04
+    dispatches_to: "go test ./internal/skillsource/ -run TestStress_ConcurrentValidate -v"
+    category: stress
+    priority: high
+    required_evidence:
+      - test_exit_zero
+      - captured_output_contains "PASS"
+
+  - id: CME-SKILLSOURCE-002
+    name: "Concurrent multi-type source validation"
+    feature_class: skillsource
+    related_issue: G04
+    dispatches_to: "go test ./internal/skillsource/ -run TestStress_ConcurrentValidateMultipleTypes -v"
+    category: stress
+    priority: high
+    required_evidence:
+      - test_exit_zero
+      - captured_output_contains "PASS"
+
+  - id: CME-SKILLSOURCE-003
+    name: "Source validation edge cases (empty, invalid types, nil config)"
+    feature_class: skillsource
+    related_issue: G04
+    dispatches_to: "go test ./internal/skillsource/ -run 'TestChaos_Validate_' -v"
+    category: chaos
+    priority: medium
+    required_evidence:
+      - test_exit_zero
+      - captured_output_contains "PASS"
+
+  - id: CME-SKILLSOURCE-004
+    name: "SourceType and SyncStatus IsValid contract"
+    feature_class: skillsource
+    related_issue: G04
+    dispatches_to: "go test ./internal/skillsource/ -run 'TestChaos_SourceType_IsValid|TestChaos_SyncStatus_IsValid' -v"
+    category: chaos
+    priority: medium
+    required_evidence:
+      - test_exit_zero
+      - captured_output_contains "PASS"
+
+  # ------------------------------------------------------------------
+  # Models — stress + chaos (NEW G04 expansion)
+  # ------------------------------------------------------------------
+  - id: CME-MODELS-001
+    name: "Concurrent Skill construction (100 goroutines)"
+    feature_class: models
+    related_issue: G04
+    dispatches_to: "go test ./internal/models/ -run TestStress_ConcurrentSkillConstruction -v"
+    category: stress
+    priority: high
+    required_evidence:
+      - test_exit_zero
+      - captured_output_contains "PASS"
+
+  - id: CME-MODELS-002
+    name: "Concurrent Dependency creation (100 goroutines)"
+    feature_class: models
+    related_issue: G04
+    dispatches_to: "go test ./internal/models/ -run TestStress_ConcurrentDependencyCreation -v"
+    category: stress
+    priority: high
+    required_evidence:
+      - test_exit_zero
+      - captured_output_contains "PASS"
+
+  - id: CME-MODELS-003
+    name: "SkillKind NormalizeOrAtomic edge cases"
+    feature_class: models
+    related_issue: G04
+    dispatches_to: "go test ./internal/models/ -run TestChaos_SkillKind_NormalizeOrAtomic -v"
+    category: chaos
+    priority: medium
+    required_evidence:
+      - test_exit_zero
+      - captured_output_contains "PASS"
+
+  - id: CME-MODELS-004
+    name: "Hard closure type contract (requires/composes/extends)"
+    feature_class: models
+    related_issue: G04
+    dispatches_to: "go test ./internal/models/ -run TestChaos_IsHardClosure -v"
+    category: chaos
+    priority: medium
+    required_evidence:
+      - test_exit_zero
+      - captured_output_contains "PASS"
+
+  # ------------------------------------------------------------------
+  # Full sweeps — combined stress + chaos
+  # ------------------------------------------------------------------
+  - id: CME-STRESS-FULL
+    name: "Full stress sweep — all packages"
+    feature_class: all
+    related_issue: G04
+    dispatches_to: "go test ./... -run 'TestStress' -count=1"
+    category: stress
+    priority: high
+    required_evidence:
+      - test_exit_zero
+      - captured_output_contains "ok"
+
+  - id: CME-CHAOS-FULL
+    name: "Full chaos sweep — all packages"
+    feature_class: all
+    related_issue: G04
+    dispatches_to: "go test ./... -run 'TestChaos' -count=1"
+    category: chaos
+    priority: high
+    required_evidence:
+      - test_exit_zero
+      - captured_output_contains "ok"
+
+  # ------------------------------------------------------------------
+  # Fuzz targets (requires -fuzz flag, run separately)
+  # ------------------------------------------------------------------
+  - id: CME-FUZZ-EVIDENCE
+    name: "Fuzz evidence cache key generation"
+    feature_class: codegraph
+    related_issue: G04
+    dispatches_to: "go test ./internal/codegraph/ -fuzz=FuzzEvidenceCache -fuzztime=10s"
+    category: fuzz
+    priority: medium
+    required_evidence:
+      - test_exit_zero
+      - no_panics
+
+  - id: CME-FUZZ-CLASSIFY
+    name: "Fuzz dedup classification"
+    feature_class: dedup
+    related_issue: G04
+    dispatches_to: "go test ./internal/source/dedup/ -fuzz=FuzzClassify -fuzztime=10s"
+    category: fuzz
+    priority: medium
+    required_evidence:
+      - test_exit_zero
+      - no_panics
+
+  - id: CME-FUZZ-VALIDATE
+    name: "Fuzz skill source validation"
+    feature_class: skillsource
+    related_issue: G04
+    dispatches_to: "go test ./internal/skillsource/ -fuzz=FuzzValidate -fuzztime=10s"
+    category: fuzz
+    priority: medium
+    required_evidence:
+      - test_exit_zero
+      - no_panics
+
+  - id: CME-FUZZ-SKILLKIND
+    name: "Fuzz SkillKind normalization"
+    feature_class: models
+    related_issue: G04
+    dispatches_to: "go test ./internal/models/ -fuzz=FuzzSkillKindNormalize -fuzztime=10s"
+    category: fuzz
+    priority: medium
+    required_evidence:
+      - test_exit_zero
+      - no_panics
+
+  - id: CME-FUZZ-SKILLJSON
+    name: "Fuzz Skill JSON round-trip"
+    feature_class: models
+    related_issue: G04
+    dispatches_to: "go test ./internal/models/ -fuzz=FuzzSkillJSON -fuzztime=10s"
+    category: fuzz
+    priority: medium
+    required_evidence:
+      - test_exit_zero
+      - no_panics
