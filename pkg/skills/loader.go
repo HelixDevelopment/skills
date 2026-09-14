@@ -43,8 +43,6 @@ func NewLoader() *Loader { return &Loader{} }
 //     (case-insensitive filesystems cannot fake a pass: the check is
 //     name-exact, not open-and-hope)
 //
-//   - the front-matter `name` must equal the directory name (spec §8)
-//
 //   - malformed front-matter is an error, never a silent skip (T-P6.04
 //     direction: operator-visible failures)
 //
@@ -60,6 +58,9 @@ func (l *Loader) LoadSource(src Source) ([]Skill, error) {
 	}
 	_ = entries
 	var manifests []string
+	// NOTE: the ReadDir above is the fail-fast root readability probe
+	// (unreadable root errors here, not mid-walk); WalkDir below does the
+	// real enumeration.
 	walkErr := filepath.WalkDir(src.Root, func(p string, d os.DirEntry, err error) error {
 		if err != nil {
 			return err
