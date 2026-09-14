@@ -1,0 +1,1 @@
+stat /tmp/skills_upstream/pkg/skills: directory not found

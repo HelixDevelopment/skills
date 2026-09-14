@@ -1,0 +1,14 @@
+# github.com/HelixDevelopment/skills/pkg/skills [github.com/HelixDevelopment/skills/pkg/skills.test]
+pkg/skills/loader_test.go:37:9: undefined: Source
+pkg/skills/loader_test.go:37:54: undefined: DialectAgent
+pkg/skills/loader_test.go:37:91: undefined: TrustVendored
+pkg/skills/loader_test.go:41:14: undefined: NewLoader
+pkg/skills/loader_test.go:55:23: undefined: Skill
+pkg/skills/loader_test.go:98:9: undefined: Source
+pkg/skills/loader_test.go:98:54: undefined: DialectAgent
+pkg/skills/loader_test.go:98:91: undefined: TrustVendored
+pkg/skills/loader_test.go:99:12: undefined: NewLoader
+pkg/skills/loader_test.go:121:9: undefined: Source
+pkg/skills/loader_test.go:121:9: too many errors
+FAIL	github.com/HelixDevelopment/skills/pkg/skills [build failed]
+FAIL

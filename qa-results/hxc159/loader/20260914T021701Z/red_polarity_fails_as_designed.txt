@@ -1,0 +1,5 @@
+--- FAIL: TestLoaderEnumeratesFixtureCorpus (0.00s)
+    loader_test.go:56: RED_MODE=1 expects the defect (0 skills); got 2 — defect absent, fix present
+FAIL
+FAIL	github.com/HelixDevelopment/skills/pkg/skills	0.004s
+FAIL

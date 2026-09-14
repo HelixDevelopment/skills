@@ -1,0 +1,8 @@
+=== RUN   TestLoaderEnumeratesFixtureCorpus
+--- PASS: TestLoaderEnumeratesFixtureCorpus (0.00s)
+=== RUN   TestLoaderRejectsNameDirectoryMismatch
+--- PASS: TestLoaderRejectsNameDirectoryMismatch (0.00s)
+=== RUN   TestLoaderRequiresExactCaseManifest
+--- PASS: TestLoaderRequiresExactCaseManifest (0.00s)
+PASS
+ok  	github.com/HelixDevelopment/skills/pkg/skills	0.005s

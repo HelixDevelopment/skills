@@ -1,0 +1,1 @@
+CM-CONSUMER-VERSION-PARITY: PASS — pkg/skills graph is stdlib-only (95 packages, zero third-party)
