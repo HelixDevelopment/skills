@@ -1,0 +1,7 @@
+--- FAIL: TestG07PartOf_Inverts_NoPartialLoss (0.32s)
+    g07_remediation_test.go:311: no parent→child composes edge on po.parent (silent loss of part_of)
+--- FAIL: TestPartOf_InvertsToParentComposesEdge (0.28s)
+    part_of_inversion_test.go:63: no parent→child composes edge on po2.parent (deps=[{SkillID:182d4bea-3ee3-4c0f-b5a1-db177d06c4dc DependsOn:ca3aa43d-10dd-4766-9914-80092e284464 RelationType:related_to Optional:false SortOrder:<nil> DependsOnName:po2.child DependsOnTitle:part_of child}])
+FAIL
+FAIL	github.com/HelixDevelopment/skills/internal/skill	0.602s
+FAIL

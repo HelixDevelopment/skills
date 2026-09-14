@@ -1,0 +1,15 @@
+=== RUN   TestPartOf_InvertsToParentComposesEdge
+    part_of_inversion_test.go:40: import with part_of failed: part_of dependency alias not yet supported: part_of=[po2.parent] (the child→parent inverted-composes alias is a tracked G07 follow-up; declare the edge as `composes` on the parent skill instead) (want the inverted parent→child composes edge)
+--- FAIL: TestPartOf_InvertsToParentComposesEdge (0.29s)
+=== RUN   TestPartOf_AbsentParent_HardErrors_NoPartialPersist
+    part_of_inversion_test.go:99: import error = part_of dependency alias not yet supported: part_of=[po2.ghost] (the child→parent inverted-composes alias is a tracked G07 follow-up; declare the edge as `composes` on the parent skill instead), want it to wrap ErrDependencyNotFound
+--- FAIL: TestPartOf_AbsentParent_HardErrors_NoPartialPersist (0.28s)
+=== RUN   TestPartOf_DuplicateParents_FoldToOneEdge
+    part_of_inversion_test.go:126: import with duplicated part_of failed: part_of dependency alias not yet supported: part_of=[po2.foldparent po2.foldparent] (the child→parent inverted-composes alias is a tracked G07 follow-up; declare the edge as `composes` on the parent skill instead)
+--- FAIL: TestPartOf_DuplicateParents_FoldToOneEdge (0.30s)
+=== RUN   TestPartOf_CycleThroughParent_HardErrors
+    part_of_inversion_test.go:196: import error = part_of dependency alias not yet supported: part_of=[cyc.base] (the child→parent inverted-composes alias is a tracked G07 follow-up; declare the edge as `composes` on the parent skill instead), want it to wrap ErrCycleDetected
+--- FAIL: TestPartOf_CycleThroughParent_HardErrors (0.28s)
+FAIL
+FAIL	github.com/HelixDevelopment/skills/internal/skill	1.159s
+FAIL

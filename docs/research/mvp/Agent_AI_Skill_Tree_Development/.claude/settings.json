@@ -16,7 +16,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash \"$(git -C \"$CLAUDE_PROJECT_DIR\" rev-parse --show-toplevel)/docs/research/mvp/Agent_AI_Skill_Tree_Development/project/scripts/append_request_history.sh\""
+            "command": "bash \"$(git -C \"$CLAUDE_PROJECT_DIR\" rev-parse --show-toplevel)/scripts/append_request_history.sh\""
           }
         ]
       }

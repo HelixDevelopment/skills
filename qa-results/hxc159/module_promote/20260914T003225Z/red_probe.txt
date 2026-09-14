@@ -1,0 +1,11 @@
+# T-P3.01.1 RED probe (20260914T003225Z)
+
+## go get (fetch level)
+Command: go get github.com/HelixDevelopment/skills@latest (scratch module redprobe)
+Result: exit 0 — proxy serves repo zip @ v0.0.0-20260718024712-315b56ce1e4c (HEAD 315b56ce). Fetch does NOT fail.
+
+## go list (consumability level — the substantive RED)
+Command: go list github.com/HelixDevelopment/skills/...
+Result: go: warning: "..." matched no packages — ZERO consumable packages at module root.
+
+Verdict: module unconsumable pre-promotion (no root go.mod, no root packages). RED confirmed at the consumability layer that T-P3.01's runtime signature requires.

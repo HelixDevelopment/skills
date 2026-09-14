@@ -1,0 +1,5 @@
+--- FAIL: TestDraftSkill_ResourcesPersisted (0.34s)
+    pipeline_g20_test.go:165: draftPersistAndCrossReference reported errors: [persist resources for g20ae-resources-child-skill: insert resource 0: ERROR: new row for relation "resources" violates check constraint "resources_resource_type_check" (SQLSTATE 23514)]
+FAIL
+FAIL	github.com/helixdevelopment/skill-system/internal/autoexpand	0.351s
+FAIL

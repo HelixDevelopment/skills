@@ -38,3 +38,40 @@ go.work.sum
 
 # Multitrack test results (ephemeral, per-run)
 qa-results/multitrack*/
+
+# --- union with docs/research/mvp/Agent_AI_Skill_Tree_Development/project/.gitignore (HXC-159 T-P3.01.2) ---
+# NOTE: nested `*.db` deliberately NOT carried over — the tree holds a TRACKED
+# SSoT database (docs/.../workable_items.db); ignoring *.db would contradict it.
+bin/
+dist/
+
+# Python (seed/validate_dag.py + tooling)
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Environment (local overrides)
+.env.local
+
+# Editor swap files
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Runtime database data (not the tracked SSoT .db files)
+pgdata/
+
+# Local config overrides (tracked examples remain)
+config/local.toml
+config/production.toml
+
+# Logs
+*.log
+logs/

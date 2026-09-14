@@ -1,0 +1,48 @@
+?   	github.com/HelixDevelopment/skills	[no test files]
+ok  	github.com/HelixDevelopment/skills/cmd/cli	0.015s
+ok  	github.com/HelixDevelopment/skills/cmd/cli/commands	0.047s
+ok  	github.com/HelixDevelopment/skills/cmd/server	4.006s
+ok  	github.com/HelixDevelopment/skills/cmd/tui	0.038s
+?   	github.com/HelixDevelopment/skills/cmd/worker	[no test files]
+ok  	github.com/HelixDevelopment/skills/internal/api	0.351s
+--- FAIL: TestDraftSkill_ResourcesPersisted (0.57s)
+    pipeline_g20_test.go:165: draftPersistAndCrossReference reported errors: [persist resources for g20ae-resources-child-skill: insert resource 0: ERROR: new row for relation "resources" violates check constraint "resources_resource_type_check" (SQLSTATE 23514)]
+FAIL
+FAIL	github.com/HelixDevelopment/skills/internal/autoexpand	1.886s
+ok  	github.com/HelixDevelopment/skills/internal/cache	1.713s
+ok  	github.com/HelixDevelopment/skills/internal/codeanalysis	0.107s
+ok  	github.com/HelixDevelopment/skills/internal/codegraph	0.029s
+ok  	github.com/HelixDevelopment/skills/internal/config	0.047s
+ok  	github.com/HelixDevelopment/skills/internal/db	15.358s
+ok  	github.com/HelixDevelopment/skills/internal/ingest/pipeline	0.016s
+ok  	github.com/HelixDevelopment/skills/internal/ingest/source	0.038s
+ok  	github.com/HelixDevelopment/skills/internal/mcp	1.182s
+ok  	github.com/HelixDevelopment/skills/internal/metrics	0.031s
+ok  	github.com/HelixDevelopment/skills/internal/models	0.012s
+ok  	github.com/HelixDevelopment/skills/internal/registry	2.018s
+ok  	github.com/HelixDevelopment/skills/internal/skill	(cached)
+ok  	github.com/HelixDevelopment/skills/internal/skillscatalog	8.144s
+--- FAIL: TestStore_Create (0.02s)
+    store_test.go:133: connect to test database: register pgvector types: pgvector RegisterTypes: vector type not found in the database
+--- FAIL: TestStore_GetByID (0.02s)
+    store_test.go:191: connect to test database: register pgvector types: pgvector RegisterTypes: vector type not found in the database
+--- FAIL: TestStore_GetByName (0.02s)
+    store_test.go:227: connect to test database: register pgvector types: pgvector RegisterTypes: vector type not found in the database
+--- FAIL: TestStore_List (0.02s)
+    store_test.go:261: connect to test database: register pgvector types: pgvector RegisterTypes: vector type not found in the database
+--- FAIL: TestStore_Update (0.01s)
+    store_test.go:300: connect to test database: register pgvector types: pgvector RegisterTypes: vector type not found in the database
+--- FAIL: TestStore_Delete (0.01s)
+    store_test.go:341: connect to test database: register pgvector types: pgvector RegisterTypes: vector type not found in the database
+--- FAIL: TestStore_UpdateSyncStatus (0.01s)
+    store_test.go:375: connect to test database: register pgvector types: pgvector RegisterTypes: vector type not found in the database
+FAIL
+FAIL	github.com/HelixDevelopment/skills/internal/skillsource	0.107s
+ok  	github.com/HelixDevelopment/skills/internal/source/dedup	0.011s
+ok  	github.com/HelixDevelopment/skills/internal/source/github	0.040s
+ok  	github.com/HelixDevelopment/skills/internal/source/mapper	0.019s
+ok  	github.com/HelixDevelopment/skills/internal/source/skillmd	0.022s
+ok  	github.com/HelixDevelopment/skills/internal/toon	0.015s
+ok  	github.com/HelixDevelopment/skills/internal/validation	1.170s
+ok  	github.com/HelixDevelopment/skills/internal/worker	0.976s
+FAIL

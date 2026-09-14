@@ -1,0 +1,12 @@
+=== RUN   TestG07PartOf_Inverts_NoPartialLoss
+--- PASS: TestG07PartOf_Inverts_NoPartialLoss (0.27s)
+=== RUN   TestPartOf_InvertsToParentComposesEdge
+--- PASS: TestPartOf_InvertsToParentComposesEdge (0.31s)
+=== RUN   TestPartOf_AbsentParent_HardErrors_NoPartialPersist
+--- PASS: TestPartOf_AbsentParent_HardErrors_NoPartialPersist (0.27s)
+=== RUN   TestPartOf_DuplicateParents_FoldToOneEdge
+--- PASS: TestPartOf_DuplicateParents_FoldToOneEdge (0.30s)
+=== RUN   TestPartOf_CycleThroughParent_HardErrors
+--- PASS: TestPartOf_CycleThroughParent_HardErrors (0.29s)
+PASS
+ok  	github.com/HelixDevelopment/skills/internal/skill	1.445s
